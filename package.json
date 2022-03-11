@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"cd client && npm start\"",
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/diabaatwit/Remote-Job-Search#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "concurrently": "^7.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

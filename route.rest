@@ -1,0 +1,13 @@
+###
+
+POST http://localhost:3001/accounts
+Content-Type: application/json
+
+{
+    "firstName": "Amanda",
+    "lastName": "zhang",
+    "email": "amanda@example.com",
+    "phoneNumber": "891-462-7810",
+    "password": "hkdaskjbsakj",
+}
+
