@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* Default styles for the browser */
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+html{
+    background-color: #FEFEFF;
+}
+
+header{
+    width: 100vw;
+    height: 60px;
+    border-bottom: solid 1px rgba(16, 16, 16, 0.1);
+    background-color: #27255d;
+    font-family: 'Poppins';
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+header .inner{
+    margin-left: 5%;
+    margin-right: 8%;
+    height: 100%;
+    
+}
+
+header .logo{
+    display: table;
+    height: 100%;
+    float: left;
+}
+
+header .logo div{
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header .logo img{
+    height: 50px;
+    margin-top: 0px; /* Optical alignment of the logo */
+}
+
+header nav{
+    float: right;
+    height: 100%;
+}
+
+header nav li{
+    display: table;
+    height: 100%;
+    float: left;
+    margin-right: 20px;
+}
+
+header nav li:last-of-type{
+    margin-right: 0;
+}
+
+header nav span {
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 65%;
+}
+
+header nav .button{
+    text-decoration: none;
+    color: #D4D5D4;
+    justify-self: left;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+
+}
+
+header nav .button:hover{
+    filter: brightness(1.05);
+}
+
+.title{
+    color:#7ED5DE;
+    font-family: 'Roboto', sans-serif;
+    float: left;
+    font-weight: 100;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+}
+
+#Main-Logo{
+    color: #7ED5DE;
+    font-family: 'Roboto', sans-serif
+}
+
+header .settings{
+    display: table;
+    height: 100%;
+    float: left;
+}
+
+header .settings div{
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header .settings img{
+    height: 50px;
+    margin-top: 15px; /* Optical alignment of the logo */
+    float: right;
+}
+
+#settings-icon { 
+    color: #D4D5D4;
+}

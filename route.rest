@@ -11,3 +11,7 @@ Content-Type: application/json
     "password": "hkdaskjbsakj",
 }
 
+###
+
+DELETE http://localhost:3001/accounts/622bc0c6148ff5667f9723d6
+
