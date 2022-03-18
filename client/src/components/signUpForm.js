@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import '../css/LoginAndSignUpForm.css'
 
-
-//Five boxes for info
-//Then 3 buttons for add, update, delete
-
-//helpful URL: https://www.geeksforgeeks.org/how-to-connect-mongodb-with-reactjs/?ref=rp
-//helpful URL: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
-
-
 class SignUpForm extends Component {
     constructor(props) {
         super(props)
