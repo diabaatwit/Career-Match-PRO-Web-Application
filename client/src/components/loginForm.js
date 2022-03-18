@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/LoginForm.css'
+import '../css/LoginAndSignUpForm.css'
 
 
 //Five boxes for info
@@ -13,11 +13,8 @@ class LoginForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            numHours: 17,
-            xRayImageLink: "https://www.tbf.org/-/media/tbforg/images/gifts/hack-diversity-logo.gif?h=226&w=250&la=en&hash=2695C4EC5433CE76C7F84BF3134C8501CA64AFBE",
-            keyFindings: "",
-            brixiaScores: "",
-            patientID: "61f69f239180161fg9453e13",
+            email: "",
+            password: "",
         }
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
@@ -40,7 +37,7 @@ class LoginForm extends Component {
                     <div class="txt_field">
                         <input type="text" required />
                         <span></span>
-                        <label>Username</label>
+                        <label>Email</label>
                     </div>
                     <div class="txt_field">
                         <input type="password" required />

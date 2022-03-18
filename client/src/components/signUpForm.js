@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/LoginForm.css'
+import '../css/LoginAndSignUpForm.css'
 
 
 //Five boxes for info
