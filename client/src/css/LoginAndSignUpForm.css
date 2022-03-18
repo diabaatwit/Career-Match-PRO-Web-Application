@@ -113,3 +113,7 @@ form .txt_field{
 .signup_link a:hover{
   text-decoration: underline;
 }
+
+#invalidMsg{
+  color: red;
+}

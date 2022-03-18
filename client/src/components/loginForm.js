@@ -27,15 +27,25 @@ class LoginForm extends Component {
 
     }
 
+    // authorize user's input
     async authorization() {
+        // fetch accounts
         const response = await fetch('http://localhost:3001/accounts'); //path
         if (response.ok) {
             const accounts = await response.json()
+
+            // compare user input with accounts' emails and passwords, if ok, then open home page otherwise display invalid message
             for (let i = 0; i < accounts.length; i++) {
                 if (accounts[i].email == this.state.email && accounts[i].password === this.state.password) {
                     this.state.isValid = true
-                    break
+                    window.location.assign("/home");
                 }
+            }
+
+            // if user entered invalid email or password, display invalid email or password msg.
+            if (this.state.isValid == false){
+                const invalidMSG = document.getElementById("invalidMsg");
+                invalidMSG.innerHTML = "Invalid email or password. Please try again."
             }
 
 
@@ -48,6 +58,7 @@ class LoginForm extends Component {
             <div class="center">
                 <h1>Login</h1>
                 <form>
+                    <div id="invalidMsg"></div>
                     <div class="txt_field">
                         <input type="text" required={true}
                             onChange={(e) => this.setState({ email: e.target.value })} />
