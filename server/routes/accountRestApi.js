@@ -23,76 +23,76 @@ const Account = require('../models/account')
 
 // Getting all accounts
 router.get('/', async (req, res) => {
-    try {
-        // get all accounts, and retrieve it in json format.
-        const accounts = await Account.find()
-        res.header("Access-Control-Allow-Origin", "*")
-        res.json(accounts)
-    }
-    catch (err) {
-        // if error, display error 500
-        res.status(500).json({ message: err.message})
-    }
+  try {
+    // get all accounts, and retrieve it in json format.
+    const accounts = await Account.find()
+    res.header("Access-Control-Allow-Origin", "*")
+    res.json(accounts)
+  }
+  catch (err) {
+    // if error, display error 500
+    res.status(500).json({ message: err.message })
+  }
 })
 
 // getting one account
 router.get('/:id', getAccount, (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.json(res.account)
-  })
+  res.header("Access-Control-Allow-Origin", "*")
+  res.json(res.account)
+})
 
 // adding an account
 router.post('/', async (req, res) => {
-    const account = new Account({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      password: req.body.password
-    })
-    try {
-        // add the account
-        const newAccount = await account.save()
-        res.header("Access-Control-Allow-Origin", "*")
-        console.log(newAccount)
-        res.status(201).json(newAccount)
-    } catch (err) {
-        // if error, display error 400
-        res.status(400).json({ message: err.message })
-    }
+  const account = new Account({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    password: req.body.password
+  }) 
+  try {   
+    // add the account
+    const newAccount = await account.save()
+    res.header("Access-Control-Allow-Origin", "*")
+    console.log(newAccount)
+    res.status(201).json(newAccount)
+  } catch (err) {
+    // if error, display error 400
+    res.status(400).json({ message: err.message })
+  }
 });
 
 // deleting an account
 router.delete('/:id', getAccount, async (req, res) => {
-    try {
-      // delete account with this id.
-      await res.account[0].remove()
-      res.json({ message: 'Account deleted' })
-    } catch (err) {
-      // if error, display error 500
-      res.status(500).json({ message: err.message })
-    }
-  })
+  try {
+    // delete account with this id.
+    await res.account[0].remove()
+    res.json({ message: 'Account deleted' })
+  } catch (err) {
+    // if error, display error 500
+    res.status(500).json({ message: err.message })
+  }
+})
 
 
 // getting a specific account by id
 async function getAccount(req, res, next) {
-    let account = []
-    try {
-      // get account by id.
-      account[0] = await Account.findById(req.params.id)
-      // if there is no account with this id, display cannot find account.
-      if (account == null) {
-        return res.status(404).json({ message: 'Cannot find account' })
-      }
-    } catch (err) {
-      // if error, display error 500
-      return res.status(500).json({ message: err.message })
+  let account = []
+  try {
+    // get account by id.
+    account[0] = await Account.findById(req.params.id)
+    // if there is no account with this id, display cannot find account.
+    if (account == null) {
+      return res.status(404).json({ message: 'Cannot find account' })
     }
-  
-    res.account = account
-    next()
+  } catch (err) {
+    // if error, display error 500
+    return res.status(500).json({ message: err.message })
   }
+
+  res.account = account
+  next()
+}
 
 
 module.exports = router

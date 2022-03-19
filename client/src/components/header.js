@@ -12,7 +12,7 @@ class Header extends Component {
                             <a href="/">
                                 <h1 className='title'>
                                     <GrSearch size={26}/>&nbsp;
-                                    Remote Job Search
+                                    Job Search Web App
                                 </h1>
                             </a>
                         </div>

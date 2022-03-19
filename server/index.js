@@ -5,6 +5,7 @@ const express = require("express");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+const bodyparser = require('body-parser');
 
 const mongoose = require('mongoose')
 
@@ -16,7 +17,7 @@ const config = require('./config');
 const headers = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET',
+ 
 };
 
 // database url.
@@ -33,6 +34,8 @@ db.once('open', () => console.log('Connected to database'))
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+app.use(bodyparser.json());
 
 
 app.get("/", (req, res) => {
@@ -52,7 +55,7 @@ app.get("/jobs", (req, res) => {
   const { search, location, country = 'us' } = decodedParams;
 
   const targetURL = `${config.BASE_URL}/${country.toLowerCase()}/${config.BASE_PARAMS}&app_id=${config.APP_ID}&app_key=${config.API_KEY}&what=${search}&where=${location}`;
-  if (req.method === 'GET') {
+  
     console.log(`Proxy GET request to : ${targetURL}`);
     axios.get(targetURL)
       .then(response => {
@@ -64,7 +67,7 @@ app.get("/jobs", (req, res) => {
         res.writeHead(500, headers);
         res.end(JSON.stringify(response));
       });
-  }
+  
 })
 
 

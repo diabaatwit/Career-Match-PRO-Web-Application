@@ -6,15 +6,15 @@ const accountSchema = new mongoose.Schema({
 
     firstName: {
         type: String,
-        required: true
+        //required: true
     },
     lastName: {
         type: String,
-        required: true
+        //required: true
     },
     email: {
         type: String,
-        required: true
+        //required: true
     },
     phoneNumber: {
         type: String,
@@ -22,7 +22,7 @@ const accountSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        //required: true
     }
 })
 

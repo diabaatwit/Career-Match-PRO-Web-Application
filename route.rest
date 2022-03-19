@@ -7,11 +7,11 @@ Content-Type: application/json
     "firstName": "Amanda",
     "lastName": "zhang",
     "email": "amanda@example.com",
-    "phoneNumber": "891-462-7810",
-    "password": "hkdaskjbsakj",
+    "pho0.neNumber": "891-462-7810",
+    "password": "hkdaskjbsakj"
 }
 
 ###
 
-DELETE http://localhost:3001/accounts/622bc0c6148ff5667f9723d6
+DELETE http://localhost:3001/accounts/62320f508887d350d927ad8f
 
