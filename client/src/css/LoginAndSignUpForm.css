@@ -17,6 +17,7 @@ body{
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-height: 650px;
   width: 500px;
   background: white;
   border-radius: 10px;
@@ -39,7 +40,7 @@ form .txt_field{
 .txt_field input{
   width: 100%;
   padding: 0 5px;
-  height: 40px;
+  height: 30px;
   font-size: 16px;
   border: none;
   background: none;
@@ -58,7 +59,7 @@ form .txt_field{
 .txt_field span::before{
   content: '';
   position: absolute;
-  top: 40px;
+  top: 30px;
   left: 0;
   width: 0%;
   height: 2px;

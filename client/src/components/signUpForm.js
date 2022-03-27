@@ -18,38 +18,45 @@ class SignUpForm extends Component {
     handleOnSubmit = (e) => {
         console.log('submitted')
         this.fetching()
-        
+
     }
 
     async fetching() {
 
-        console.log(this.state.firstName)
-        console.log(this.state.password)
-        const newAccount = {
+        if (this.state.password == this.state.confirmPassword) {
+            console.log(this.state.firstName)
+            console.log(this.state.password)
+            const newAccount = {
 
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            phoneNumber: this.state.phoneNumber,
-            password: this.state.password,          
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                phoneNumber: this.state.phoneNumber,
+                password: this.state.password,
 
-          }
-        const account = JSON.stringify(newAccount)
-        console.log(account)
+            }
+            const account = JSON.stringify(newAccount)
+            console.log(account)
 
-        const options = {
+            const options = {
 
-            method: "POST",
-            mode: "cors",
-            headers: { "Content-Type": "application/json"},
-            body: account
-            
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "application/json" },
+                body: account
+
+            }
+
+            await fetch("http://localhost:3001/accounts", options)
+                .then(response => response.text())
+                .catch(error => console.log('error', error));
+            window.location.assign("/");
+        }
+        else {
+            const donotMatchMsg = document.getElementById("invalidMsg");
+            donotMatchMsg.innerHTML = "Confirm Password and Password do not match."
         }
 
-        await fetch("http://localhost:3001/accounts", options)
-        .then(response => response.text())
-        .catch(error => console.log('error', error));
-        window.location.assign("/"); 
     }
 
     render() {
@@ -89,11 +96,12 @@ class SignUpForm extends Component {
                     </div>
                     <div class="txt_field">
                         <input type="password" required={true}
-                            onChange={(e) => this.setState({ password: e.target.value })} />
+                            onChange={(e) => this.setState({ confirmPassword: e.target.value })} />
                         <span></span>
                         <label>Confirm Password</label>
                     </div>
-                    <input id="actionBtn" value="Sign Up" onClick={this.handleOnSubmit}/>
+                    <div id="invalidMsg"></div>
+                    <input id="actionBtn" value="Sign Up" onClick={this.handleOnSubmit} />
                 </form>
             </div>
         )
