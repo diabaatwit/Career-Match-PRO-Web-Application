@@ -46,7 +46,8 @@ class SearchJob extends Component {
                             <h4 class="card-title">{job.title}</h4>
                             <h5>{job.location.display_name}</h5>
                             <p class="card-text">{job.description}</p>
-                            <a href={job.redirect_url} target="_blank">View Job</a>
+                            <button class='btn' onClick={() => {window.open(job.redirect_url, "_blank")}}>View Job</button>
+                            <button class='btn'>Save Job</button>
                         </div>
                     </div>
                     <br/>

@@ -15,6 +15,14 @@ const jobSchema = new mongoose.Schema({
         type: String,
         //required: true
     },
+    url: {
+        type: String,
+        //required: true
+    },
+    accountID: {
+        type: String,
+        //required: true
+    },
 })
 
 module.exports = mongoose.model('jobs', jobSchema)
