@@ -87,3 +87,15 @@ form .search_field{
     background-color: #F6F6F6;
    
 }
+
+.savedJobsTitle {
+
+    padding: 50px;
+    height: 150;
+}
+
+.noSavedJobs {
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}

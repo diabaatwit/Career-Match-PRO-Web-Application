@@ -30,12 +30,6 @@ class SearchJob extends Component {
                 this.setState({ results })
                 console.log(this.state.results)
                 //this.setState({ results })
-                return results.map(job => {
-                    return (
-                        <header class="x">{job.description}</header>
-
-                    )
-                })
             })
 
         //console.log(this.state.results)
