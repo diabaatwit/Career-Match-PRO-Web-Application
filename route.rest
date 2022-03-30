@@ -15,3 +15,18 @@ Content-Type: application/json
 
 DELETE http://localhost:3001/accounts/62320f508887d350d927ad8f
 
+
+###
+
+// test savedJobs
+
+POST http://localhost:3001/savedJobs
+Content-Type: application/json
+
+{
+    "title": "software intern",
+    "location": "boston, MA",
+    "description": "salkdldafbfdlabkabslkfdbdsf"
+}
+
+
