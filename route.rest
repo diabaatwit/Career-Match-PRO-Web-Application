@@ -27,12 +27,12 @@ Content-Type: application/json
     "title": "software intern",
     "location": "boston, MA",
     "description": "salkdldafbfdlabkabslkfdbdsf",
-    "accountID": "jhfjfhfjf",
-    "url": "www.google.com"
+    "accountID": "622bc109148ff5667f9723d9",
+    "url": "http://www.google.com"
 }
 
 ###
 
-DELETE http://localhost:3001/savedJobs/62441c25e344866539b2f1af
+DELETE http://localhost:3001/savedJobs/6244425a6cafc2126c4c9585
 
 

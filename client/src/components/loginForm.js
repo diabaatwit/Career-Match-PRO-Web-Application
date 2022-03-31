@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 import '../css/LoginAndSignUpForm.css'
 
 
@@ -9,6 +11,7 @@ class LoginForm extends Component {
         this.state = {
             email: "",
             password: "",
+            id: "",
             accounts: [],
             isValid: false
         }
@@ -32,7 +35,13 @@ class LoginForm extends Component {
             for (let i = 0; i < accounts.length; i++) {
                 if (accounts[i].email == this.state.email && accounts[i].password === this.state.password) {
                     this.state.isValid = true
+                    const id = accounts[i]._id
+                    this.setState({ id })
+                    console.log(this.state.id)
+                    localStorage.setItem('userID', this.state.id)
+                    console.log(localStorage.getItem('userID'))
                     window.location.assign("/home");
+                    
                 }
             }
 

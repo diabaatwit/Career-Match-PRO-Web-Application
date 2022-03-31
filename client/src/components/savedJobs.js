@@ -14,12 +14,20 @@ class SearchJob extends Component {
 
     // authorize user's input
     async componentDidMount() {
+        let results = []
         // fetch jobs
         const response = await fetch('http://localhost:3001/savedJobs');
         if (response.ok) {
-            const results = await response.json()
+            const allResults = await response.json()
+            console.log(allResults)
+            for(let i = 0; i < allResults.length; i++){
+                if(allResults[i].accountID == localStorage.getItem('userID')){
+                    results[i] = allResults[i]
+                }
+            }
+
             console.log(results)
-            console.log(typeof (results))
+
             this.setState({ results })
         } 
     }
@@ -33,7 +41,7 @@ class SearchJob extends Component {
                             <h4 class="card-title">{job.title}</h4>
                             <h5>{job.location}</h5>
                             <p class="card-text">{job.description}</p>
-                            <a href={job.url} target="_blank">View Job</a>
+                            <button class='btn' onClick={() => {window.open(job.url, "_blank")}}>View Job</button>
                         </div>
                     </div>
                     <br />

@@ -19,6 +19,10 @@ class SearchJob extends Component {
 
     }
 
+    saveJob() {
+
+    }
+
     // authorize user's input
     async fetchingJobs() {
         // fetch jobs
@@ -29,6 +33,7 @@ class SearchJob extends Component {
                 console.log(results)
                 this.setState({ results })
                 console.log(this.state.results)
+                console.log(localStorage.getItem('userID'))
                 //this.setState({ results })
             })
 
