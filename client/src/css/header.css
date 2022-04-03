@@ -66,12 +66,39 @@ header nav span {
     padding-top: 65%;
 }
 
-header nav .button{
+header div .username{
+    position: absolute;
     text-decoration: none;
     color: #D4D5D4;
     justify-self: left;
-    padding: 10px 20px;
-    border-radius: 4px;
+    top: 2%;
+    left: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+
+}
+
+header nav .logout{
+    position: absolute;
+    text-decoration: none;
+    color: #D4D5D4;
+    justify-self: left;
+    top: 3%;
+    right: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+
+}
+
+header nav .savedjobs{
+    position: absolute;
+    text-decoration: none;
+    color: #D4D5D4;
+    justify-self: left;
+    top: 3%;
+    right: 12%;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 1.1em;

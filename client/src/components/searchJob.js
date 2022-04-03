@@ -9,6 +9,7 @@ class SearchJob extends Component {
             jobTitleInput: "",
             locationInput: "",
             results: [],
+            saveText: "Save Job"
         }
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
@@ -19,8 +20,43 @@ class SearchJob extends Component {
 
     }
 
-    saveJob() {
+    async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
+        const newSavedJob = {
+            title: jobTitle,
+            date: jobLocation,
+            description: jobDescription,
+            url: jobUrl,
+            accountID: localStorage.getItem('userID'),
+        }
 
+        const newSavedJobOptions = {
+
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newSavedJob)
+
+        }
+
+        await fetch("http://localhost:3001/savedJobs", newSavedJobOptions)
+
+            .then(response => response.text())
+            .catch(error => console.log('error', error));
+
+        //let saveBTN = document.getElementById('saveBtn')
+        //this.textContent = 'Saved'
+
+    }
+
+    changeText = (id, saveText) => {
+        console.log("id="+id);
+
+        this.setState({ saveText });
+        /*let btnSave = document.getElementById('saveBtn')
+        btnSave.addEventListener('click', function(event){
+            console.log('clicked')
+            event.stopPropagation()
+        })*/
     }
 
     // authorize user's input
@@ -51,11 +87,11 @@ class SearchJob extends Component {
                             <h4 class="card-title">{job.title}</h4>
                             <h5>{job.location.display_name}</h5>
                             <p class="card-text">{job.description}</p>
-                            <button class='btn' onClick={() => {window.open(job.redirect_url, "_blank")}}>View Job</button>
-                            <button class='btn'>Save Job</button>
+                            <button class='btn' onClick={() => { window.open(job.redirect_url, "_blank") }}>View Job</button>
+                            <input type="button" value={this.state.saveText} class='btn' id='saveBtn' onClick={(e) => { e.target.value = "Saved"; this.saveJob(job.title, job.location.display_name, job.description, job.redirect_url); }}/>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                 </div>
             )
         })

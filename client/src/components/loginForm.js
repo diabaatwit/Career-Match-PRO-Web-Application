@@ -9,6 +9,8 @@ class LoginForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
             id: "",
@@ -36,9 +38,13 @@ class LoginForm extends Component {
                 if (accounts[i].email == this.state.email && accounts[i].password === this.state.password) {
                     this.state.isValid = true
                     const id = accounts[i]._id
-                    this.setState({ id })
+                    const firstName = accounts[i].firstName
+                    const lastName = accounts[i].lastName
+                    this.setState({ id, firstName, lastName })
                     console.log(this.state.id)
                     localStorage.setItem('userID', this.state.id)
+                    localStorage.setItem('firstName', this.state.firstName)
+                    localStorage.setItem('lastName', this.state.lastName)
                     console.log(localStorage.getItem('userID'))
                     window.location.assign("/home");
                     

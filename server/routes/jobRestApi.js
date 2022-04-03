@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
         location: req.body.location,
         description: req.body.description,
         url: req.body.url,
+        accountID: req.body.accountID,
     })
     try {
         // add the job

@@ -4,19 +4,30 @@ import { GrSearch } from 'react-icons/gr'
 
 class Header extends Component {
     render() {
-        return (
+        let location = window.location.pathname.split('/')
+        return location[1] == 'signup' || location[1] == '' ? (
             <header>
                 <div class="inner">
                     <div class="logo">
                         <div>
                             <a href="/">
                                 <h1 className='title'>
-                                    <GrSearch size={26}/>&nbsp;
+                                    <GrSearch size={26} />&nbsp;
                                     Job Search Web App
                                 </h1>
                             </a>
                         </div>
-                    </div>                    
+                    </div>
+                </div>
+            </header>
+        ) : (
+            <header>
+                <div class="inner">
+                    <a class="username" href="/home">{localStorage.getItem('firstName')} <span>{localStorage.getItem('lastName')}</span></a>
+                    <nav>
+                        <li><span><a href="/savedJobs" class="savedjobs">Saved Jobs</a></span></li>
+                        <li><span><a href="/" class="logout">Log Out</a></span></li>
+                    </nav>
                 </div>
             </header>
         )
