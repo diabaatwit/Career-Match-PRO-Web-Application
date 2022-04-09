@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    width: 1170px;
+    margin: auto;
+}
+
+section{
+    background: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0.05)), url("../images/jobBG.png") no-repeat center;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+
+.nav-area{
+    float: right;
+    list-style: none;
+    margin-top: 40px;
+}
+
+.nav-area li{
+    display: inline-block;
+}
+
+.nav-area li a{
+    color:#fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: poppins;
+    font-size: 22px;
+    transition: 0.4s ease-in-out;
+}
+
+.nav-area li a:hover{
+    background: rgb(255, 255, 255);
+    color: #333;
+}
+
+.welcome-text{
+    position: absolute;
+    width:600px;
+    height: 300px;
+    margin: 20% 52%;
+    text-align: center;
+}
+
+.welcome-text h1{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 40px;
+}
+
+.welcome-text a{
+    border: 1px solid #fff;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 20px;
+    display: inline-block;
+    color: #fff;
+}
+
+.welcome-text a:hover{
+    background: #fff;
+    color: #333;
+}
+
+.icons a{
+    text-decoration: none;
+    color: #fff;
+}
+.icons ion-icon{
+    color: #fff;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    transition: 0.3s ease;
+}
+.icons ion-icon:hover{
+    color: blueviolet;
+}

@@ -1,5 +1,6 @@
 import React from "react"
 import Header from "./components/header";
+import MainPage from "./pages/mainPage";
 import Login from "./pages/loginPage";
 import SignUp from "./pages/signUpPage";
 import Home from "./pages/home";
@@ -15,7 +16,8 @@ function App() {
 
       <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/savedJobs" element={<SavedJobsPage />} />
