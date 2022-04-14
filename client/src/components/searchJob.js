@@ -79,7 +79,7 @@ class SearchJob extends Component {
     jobCard = () => {
         return this.state.isLoading ? (
             <div class="loader">
-                <ThreeDots type="ThreeDots" color="#696969" height="100" width="100" />
+                <ThreeDots type="ThreeDots" color="#BADA55" height="100" width="100" />
             </div>
         ) : (
             this.state.results.map(job => {
