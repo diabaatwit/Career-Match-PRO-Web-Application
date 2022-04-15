@@ -32,6 +32,17 @@ class SearchJob extends Component {
         } 
     }
 
+    async unsaveJob(jobID) {
+        const options = {
+            method: "DELETE",
+        }
+
+        await fetch(`http://localhost:3001/savedJobs/` + jobID, options)
+        .then(response => response.text())
+        .catch(error => console.log('error', error)); 
+
+    }
+
     jobCard = () => {
         return this.state.results.map(job => {
             return (
@@ -42,6 +53,7 @@ class SearchJob extends Component {
                             <h5>{job.location}</h5>
                             <p class="card-text">{job.description}</p>
                             <button class='btn' onClick={() => {window.open(job.url, "_blank")}}>View Job</button>
+                            <input type="button" value="Unsave" class='btn' id='unsaveBtn' onClick={(e) => { e.target.value = "Unsaved"; this.unsaveJob(job._id); }} />
                         </div>
                     </div>
                     <br />
