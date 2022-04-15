@@ -13,7 +13,7 @@ class Main extends Component {
                     <div class="Wrapper">
 
                         <ul class="nav-area">
-                            <li><a href="file:///C:/Users/zhangf2/Desktop/firstPage/firstPage.html#">HOME</a></li>
+                            <li><a href="/">HOME</a></li>
                             <li><a href="/about">ABOUT</a></li>
                             <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
                         </ul>
