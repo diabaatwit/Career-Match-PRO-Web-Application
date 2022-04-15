@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Allura|Josefin+Sans');
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.bkg{
+    
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  .about-title{
+    margin-bottom: 10px;
+    position: absolute;
+    top: 10%;
+    left: 15%;
+  }
+
+  .about-body{
+    margin-bottom: 10px;
+    position: absolute;
+    top: 19%;
+    left: 15%;
+    width: 65%;
+  }
+
+  .mission-title{
+    margin-bottom: 10px;
+    position: absolute;
+    top: 35%;
+    left: 15%;
+  }
+
+  .mission-body{
+    margin-bottom: 10px;
+    position: absolute;
+    top: 44%;
+    left: 15%;
+    width: 65%;
+  }

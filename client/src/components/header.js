@@ -20,7 +20,7 @@ class Header extends Component {
                     </div>
                 </div>
             </header>
-        ) : location[1] == '' ? (
+        ) : location[1] == '' || location[1] == 'about' ? (
             <header>
                 <div class="inner">
                     <div class="logo">
