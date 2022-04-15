@@ -9,30 +9,32 @@
 body{
   overflow-y: scroll;
   background: linear-gradient(120deg,#2980b9, #8e44ad);
-  height: 145vh;
+
 }
 
-.bkg{
-    
-    height: 100vh;
+.all{
+  height: 120vh;
+}
+.bkg{   
+
     width: 100%;
     background-size: cover;
     background-position: center center;
-    position: relative;
+
     font-family: 'Josefin Sans', sans-serif;
   }
 
   .about-title{
     margin-bottom: 10px;
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 15%;
   }
 
   .about-body{
     margin-bottom: 10px;
     position: absolute;
-    top: 24%;
+    top: 29%;
     left: 15%;
     width: 65%;
   }
@@ -40,19 +42,20 @@ body{
   .mission-title{
     margin-bottom: 10px;
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 15%;
   }
 
   .mission-body{
     margin-bottom: 10px;
     position: absolute;
-    top: 49%;
+    top: 54%;
     left: 15%;
     width: 65%;
   }
 
   .team{
+    
     position: absolute;
     top: 52%;
     left: 15%;
@@ -60,3 +63,29 @@ body{
     
     margin: 10% 0%;
   }
+
+  
+
+  .nav-ele{
+    float: right;
+    list-style: none;
+    margin-top: -6px;
+}
+
+.nav-ele li{
+    display: inline-block;
+}
+
+.nav-ele li a{
+    color:#fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: poppins;
+    font-size: 22px;
+    transition: 0.4s ease-in-out;
+}
+
+.nav-ele li a:hover{
+    background: rgb(255, 255, 255);
+    color: #333;
+}

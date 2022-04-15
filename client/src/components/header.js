@@ -47,7 +47,7 @@ class Header extends Component {
                     <a class="username" href="/home">{localStorage.getItem('firstName')} <span>{localStorage.getItem('lastName')}</span></a>
                     <nav>
                         <li><span><a href="/savedJobs" class="savedjobs">Saved Jobs</a></span></li>
-                        <li><span><a href="/" class="logout">Log Out</a></span></li>
+                        <li><span><a href="/login" class="logout">Log Out</a></span></li>
                     </nav>
                 </div>
             </header>

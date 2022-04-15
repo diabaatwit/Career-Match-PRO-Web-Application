@@ -50,7 +50,7 @@ class SignUpForm extends Component {
             await fetch("http://localhost:3001/accounts", options)
                 .then(response => response.text())
                 .catch(error => console.log('error', error));
-            window.location.assign("/");
+            window.location.assign("/login");
         }
         else {
             const donotMatchMsg = document.getElementById("invalidMsg");
