@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+body{
+  overflow-y: scroll;
+  background: linear-gradient(120deg,#2980b9, #8e44ad);
+  height: 180vh;
+}
+
 .bkg{
     
     height: 100vh;
@@ -19,14 +25,14 @@
   .about-title{
     margin-bottom: 10px;
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 15%;
   }
 
   .about-body{
     margin-bottom: 10px;
     position: absolute;
-    top: 19%;
+    top: 24%;
     left: 15%;
     width: 65%;
   }
@@ -34,14 +40,23 @@
   .mission-title{
     margin-bottom: 10px;
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 15%;
   }
 
   .mission-body{
     margin-bottom: 10px;
     position: absolute;
-    top: 44%;
+    top: 49%;
     left: 15%;
     width: 65%;
+  }
+
+  .team{
+    position: absolute;
+    top: 52%;
+    left: 15%;
+    right: 15%;
+    
+    margin: 10% 0%;
   }
