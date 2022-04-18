@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../css/header.css'
-import { GrSearch } from 'react-icons/gr'
 
 class Header extends Component {
     render() {
@@ -12,7 +11,7 @@ class Header extends Component {
                         <div>
                             <a href="/">
                                 <h1 className='title'>
-                                    <GrSearch size={26} />&nbsp;
+                                    
                                     Job Search Web App
                                 </h1>
                             </a>
@@ -27,7 +26,7 @@ class Header extends Component {
                         <div>
                             <a href="/">
                                 <h1 className='title'>
-                                    <GrSearch size={26} />&nbsp;
+                                    
                                     Job Search Web App
                                 </h1>
                             </a>
