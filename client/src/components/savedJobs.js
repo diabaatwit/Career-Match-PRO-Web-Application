@@ -16,7 +16,7 @@ class SearchJob extends Component {
     async componentDidMount() {
         let results = []
         // fetch jobs
-        const response = await fetch('http://localhost:3001/savedJobs');
+        const response = await fetch('https://jobfinderserver.herokuapp.com/savedJobs');
         if (response.ok) {
             const allResults = await response.json()
             console.log(allResults)
@@ -37,7 +37,7 @@ class SearchJob extends Component {
             method: "DELETE",
         }
 
-        await fetch(`http://localhost:3001/savedJobs/` + jobID, options)
+        await fetch(`https://jobfinderserver.herokuapp.com/savedjobs/` + jobID, options)
         .then(response => response.text())
         .catch(error => console.log('error', error)); 
 
