@@ -4,7 +4,7 @@ const cors = require('cors')
 
 
 //Give write access to server
-const whitelist = ["http://localhost:3000"]
+const whitelist = ["http://localhost:3000", "https://whimsical-begonia-2907aa.netlify.app"]
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || whitelist.indexOf(origin) !== -1) {

@@ -9,7 +9,7 @@ const bodyparser = require('body-parser');
 
 const mongoose = require('mongoose')
 
-const axios = require('axios');
+const fetch = require('node-fetch');
 const inputURL = require('url');
 const router = express.Router()
 const config = require('./config');
@@ -64,11 +64,11 @@ app.get("/jobs", (req, res) => {
   const targetURL = `${config.BASE_URL}/${country.toLowerCase()}/${config.BASE_PARAMS}&app_id=${config.APP_ID}&app_key=${config.API_KEY}&what=${search}&where=${location}`;
   
     console.log(`Proxy GET request to : ${targetURL}`);
-    axios.get(targetURL)
-      .then(response => {
+    fetch(targetURL)
+      .then(response => response.json())
+      .then(data => {
         res.writeHead(200, headers);
-        res.end(JSON.stringify(response.data));
-      })
+        res.end(JSON.stringify(data))})
       .catch(response => {
         console.log(response);
         res.writeHead(500, headers);
@@ -84,3 +84,4 @@ app.use(express.json())
 const decodeParams = searchParams => Array
   .from(searchParams.keys())
   .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
+
