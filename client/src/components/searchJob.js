@@ -40,7 +40,7 @@ class SearchJob extends Component {
 
         }
 
-        await fetch("https://jobfinderserver.herokuapp.com/savedJobs", newSavedJobOptions)
+        await fetch("http://localhost:3001/savedJobs", newSavedJobOptions)
 
             .then(response => response.text())
             .catch(error => console.log('error', error));
@@ -57,7 +57,7 @@ class SearchJob extends Component {
     async fetchingJobs() {
         this.setState({ isLoading: true })
         // fetch jobs
-        let url = 'https://jobfinderserver.herokuapp.com/jobs/?search=' + this.state.jobTitleInput + '&location=' + this.state.locationInput
+        let url = 'http://localhost:3001/jobs/?search=' + this.state.jobTitleInput + '&location=' + this.state.locationInput
         console.log(url)
         fetch(url).then(response => response.json())
             .then(({ results }) => {

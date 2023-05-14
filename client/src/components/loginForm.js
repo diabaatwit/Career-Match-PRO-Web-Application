@@ -29,7 +29,7 @@ class LoginForm extends Component {
     // authorize user's input
     async authorization() {
         // fetch accounts
-        const response = await fetch('https://jobfinderserver.herokuapp.com/accounts'); //path
+        const response = await fetch('http://localhost:3001/accounts'); //path
         if (response.ok) {
             const accounts = await response.json()
 

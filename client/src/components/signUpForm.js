@@ -47,7 +47,7 @@ class SignUpForm extends Component {
 
             }
 
-            await fetch("https://jobfinderserver.herokuapp.com/accounts", options)
+            await fetch("http://localhost:3001/accounts", options)
                 .then(response => response.text())
                 .catch(error => console.log('error', error));
             window.location.assign("/login");
