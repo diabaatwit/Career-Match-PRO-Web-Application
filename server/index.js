@@ -50,8 +50,8 @@ app.get("/accounts", (req, res) => {
 });
 
 // use jobs router in http://localhost:3001/accounts/accountID/savedJobs
-const jobRouter = require('./routes/jobRestApi')
-app.use('/savedJobs', jobRouter)
+const savedJobsRouter = require('./routes/savedJobsRestApi')
+app.use('/savedJobs', savedJobsRouter)
 app.get("/accounts", (req, res) => {
   res.json({ message: "jobs server" });
 });
