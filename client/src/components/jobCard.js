@@ -10,19 +10,10 @@ class JobCard extends Component {
             saveText: "Save Job",
             isLoading: false,
         }
-        //this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
-
-    /*handleOnSubmit = (e) => {
-
-        this.fetchingJobs()
-
-    }*/
 
     componentDidMount() {
         this.fetchingJobs()
-        //localStorage.removeItem('searchClicked')
-        // this.props.resetSearchClicked()
     }
 
     async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
@@ -44,10 +35,8 @@ class JobCard extends Component {
         }
 
         await fetch("http://localhost:3001/savedJobs", newSavedJobOptions)
-
             .then(response => response.text())
             .catch(error => console.log('error', error));
-
     }
 
     changeText = (id, saveText) => {
@@ -71,18 +60,8 @@ class JobCard extends Component {
                 console.log(localStorage.getItem('userID'))
                 this.setState({ isLoading: false })
                 console.log(this.state.isLoading)
-                //this.setState({ results })
             })
-        //console.log(this.state.results)
-
-
     }
-
-    /*componentDidUpdate(prevProps) {
-        if (prevProps.searchClicked && !this.props.searchClicked) {
-            this.fetchingJobs();
-        }
-    }*/
 
     render() {
         console.log("we are here in the job card component")
