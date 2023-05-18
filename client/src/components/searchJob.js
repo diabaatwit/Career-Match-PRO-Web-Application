@@ -60,7 +60,6 @@ class SearchJob extends Component {
                 </div>
                 {console.log("is clicked " + this.state.searchClicked)}
                 {searchClicked && <JobCard resetSearchClicked={this.resetSearchClicked} key={key} />} {/* Render the other component conditionally */}
-                {/*this.jobCard()*/}
             </div>
         )
     }
