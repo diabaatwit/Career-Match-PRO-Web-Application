@@ -21,7 +21,9 @@ class JobCard extends Component {
 
     componentDidMount() {
         this.fetchingJobs()
-      }
+        //localStorage.removeItem('searchClicked')
+        // this.props.resetSearchClicked()
+    }
 
     async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
         const newSavedJob = {
@@ -71,11 +73,16 @@ class JobCard extends Component {
                 console.log(this.state.isLoading)
                 //this.setState({ results })
             })
-        localStorage.setItem("searchClicked", JSON.stringify(false))
         //console.log(this.state.results)
 
 
     }
+
+    /*componentDidUpdate(prevProps) {
+        if (prevProps.searchClicked && !this.props.searchClicked) {
+            this.fetchingJobs();
+        }
+    }*/
 
     render() {
         console.log("we are here in the job card component")

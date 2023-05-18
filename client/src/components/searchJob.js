@@ -13,7 +13,8 @@ class SearchJob extends Component {
             results: [],
             saveText: "Save Job",
             isLoading: false,
-            searchClicked: false
+            searchClicked: false,
+            key: 1,
         }
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
@@ -27,12 +28,19 @@ class SearchJob extends Component {
         localStorage.setItem('jobTitle', this.state.jobTitleInput);
         localStorage.setItem('location', this.state.locationInput);
 
-        this.setState({ searchClicked: true })
+        this.setState((prevState) => ({ 
+            searchClicked: true,
+            key: prevState.key + 1,
+        }))
 
         localStorage.setItem('searchClicked', JSON.stringify(true))
 
 
     }
+
+    resetSearchClicked = () => {
+        this.setState({ searchClicked: false });
+    };
 
     /*async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
         const newSavedJob = {
@@ -121,7 +129,8 @@ class SearchJob extends Component {
             // Render the new component
             return <JobCard />;
         }*/
-        const searchClicked = JSON.parse(localStorage.getItem('searchClicked'));
+        //const searchClicked = (JSON.parse(localStorage.getItem('searchClicked')) === true);
+        const { searchClicked, key } = this.state
         return (
             <div class='all'>
                 <div class="searchForm">
@@ -145,7 +154,7 @@ class SearchJob extends Component {
 
                 </div>
                 {console.log("is clicked " + this.state.searchClicked)}
-                {searchClicked && <JobCard />} {/* Render the other component conditionally */}
+                {searchClicked && <JobCard resetSearchClicked={this.resetSearchClicked} key={key}/>} {/* Render the other component conditionally */}
                 {/*this.jobCard()*/}
             </div>
         )
