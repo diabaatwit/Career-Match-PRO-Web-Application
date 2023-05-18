@@ -1,40 +1,29 @@
-
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import '../css/searchJob.css'
 import { ThreeDots } from 'react-loader-spinner';
-import JobCard from './jobCard';
 
-class SearchJob extends Component {
+class JobCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            jobTitleInput: "",
-            locationInput: "",
             results: [],
             saveText: "Save Job",
             isLoading: false,
-            searchClicked: false
         }
-        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        //this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
 
-    handleOnSubmit = (e) => {
+    /*handleOnSubmit = (e) => {
 
-        //this.fetchingJobs()
-        e.preventDefault();
+        this.fetchingJobs()
 
-        // Save jobTitleInput and locationInput values to localStorage
-        localStorage.setItem('jobTitle', this.state.jobTitleInput);
-        localStorage.setItem('location', this.state.locationInput);
+    }*/
 
-        this.setState({ searchClicked: true })
+    componentDidMount() {
+        this.fetchingJobs()
+      }
 
-        localStorage.setItem('searchClicked', JSON.stringify(true))
-
-
-    }
-
-    /*async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
+    async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
         const newSavedJob = {
             title: jobTitle,
             date: jobLocation,
@@ -69,7 +58,7 @@ class SearchJob extends Component {
     async fetchingJobs() {
         this.setState({ isLoading: true })
         // fetch jobs
-        let url = 'http://localhost:3001/jobs/?search=' + this.state.jobTitleInput + '&location=' + this.state.locationInput
+        let url = 'http://localhost:3001/jobs/?search=' + localStorage.getItem("jobTitle") + '&location=' + localStorage.getItem("location")
         console.log(url)
         fetch(url).then(response => response.json())
             .then(({ results }) => {
@@ -82,13 +71,14 @@ class SearchJob extends Component {
                 console.log(this.state.isLoading)
                 //this.setState({ results })
             })
-
+        localStorage.setItem("searchClicked", JSON.stringify(false))
         //console.log(this.state.results)
 
 
     }
 
-    jobCard = () => {
+    render() {
+        console.log("we are here in the job card component")
         return this.state.isLoading ? (
             <div class="loader">
                 <ThreeDots type="ThreeDots" color="#BADA55" height="100" width="100" />
@@ -111,45 +101,7 @@ class SearchJob extends Component {
                 )
             })
         )
-
-    }*/
-
-    render() {
-        /*const { submitted } = this.state;
-
-        if (submitted) {
-            // Render the new component
-            return <JobCard />;
-        }*/
-        const searchClicked = JSON.parse(localStorage.getItem('searchClicked'));
-        return (
-            <div class='all'>
-                <div class="searchForm">
-                    <h1>Search for Jobs!</h1>
-                    <form>
-                        <div id="invalidMsg"></div>
-                        <div class="search_field">
-                            <input type="text" required={true}
-                                onChange={(e) => this.setState({ jobTitleInput: e.target.value })} />
-                            <span></span>
-                            <label>Job Title</label>
-                        </div>
-                        <div class="search_field">
-                            <input type="text" required={true}
-                                onChange={(e) => this.setState({ locationInput: e.target.value })} />
-                            <span></span>
-                            <label>Location</label>
-                        </div>
-                        <input id="searchBtn" value="Search" onClick={this.handleOnSubmit} />
-                    </form>
-
-                </div>
-                {console.log("is clicked " + this.state.searchClicked)}
-                {searchClicked && <JobCard />} {/* Render the other component conditionally */}
-                {/*this.jobCard()*/}
-            </div>
-        )
     }
 }
 
-export default SearchJob;
+export default JobCard;
