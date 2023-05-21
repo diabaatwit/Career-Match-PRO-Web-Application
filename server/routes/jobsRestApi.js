@@ -45,7 +45,7 @@ async function fetchAdzunaApi(req, res) {
     const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
     const { search, location, country = 'us' } = decodedParams;
 
-    const targetURL = `${config.BASE_URL}/${country.toLowerCase()}/${config.BASE_PARAMS}&app_id=${config.APP_ID}&app_key=${config.API_KEY}&what=${search}&where=${location}`;
+    const targetURL = `${config.ADZUNA_BASE_URL}/${country.toLowerCase()}/${config.ADZUNA_BASE_PARAMS}&app_id=${config.ADZUNA_APP_ID}&app_key=${config.ADZUNA_API_KEY}&what=${search}&where=${location}`;
 
     console.log(`Proxy GET request to : ${targetURL}`);
     return fetch(targetURL)
@@ -56,6 +56,38 @@ async function fetchAdzunaApi(req, res) {
         })
         .catch(response => {
             console.log(response);
+            res.writeHead(500, headers);
+            res.end(JSON.stringify(response));
+        });
+}
+
+async function fetchUSAJobsApi(req, res) {
+    const decodeParams = searchParams => Array
+        .from(searchParams.keys())
+        .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
+
+    const requestURL = inputURL.parse(req.url);
+    const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
+    const { search, location } = decodedParams;
+
+    const targetURL = `https://${config.USAJOBS_HOST}/api/search?Keyword=${search}&LocationName=${location}`;
+
+    console.log(`Proxy GET request to : ${targetURL}`);
+    return fetch(targetURL, {
+        method: 'GET',
+        headers: {
+            'Host': config.USAJOBS_HOST,
+            'User-Agent': config.USAJOBS_USER_AGENT,
+            'Authorization-Key': config.USAJOBS_AUTHORIZATION_KEY
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            res.writeHead(200, headers);
+            res.end(JSON.stringify(data))
+        })
+        .catch(error => {
+            console.log(error);
             res.writeHead(500, headers);
             res.end(JSON.stringify(response));
         });
