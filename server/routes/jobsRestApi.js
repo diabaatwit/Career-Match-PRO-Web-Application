@@ -29,8 +29,11 @@ const headers = {
 // Getting all jobs
 router.get('/', async (req, res) => {
     try {
-        const data = await fetchAdzunaApi(req, res);
-        res.json(data);
+        const adzunaData = await fetchAdzunaApi(req, res);
+        const usajobsData = await fetchUSAJobsApi(req, res);
+
+        const mergedData = mergeData(adzunaData, usajobsData);
+        res.json(mergedData);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch external data' });
     }
@@ -51,8 +54,15 @@ async function fetchAdzunaApi(req, res) {
     return fetch(targetURL)
         .then(response => response.json())
         .then(data => {
-            res.writeHead(200, headers);
-            res.end(JSON.stringify(data))
+            const extractedData = data.results.map(item => ({
+                jobTitle: item.title,
+                jobDescription: item.description,
+                organizationName: item.company.display_name,
+                url: item.redirect_url,
+                jobBoard: 'Adzuna'
+            }));
+
+            return extractedData;
         })
         .catch(response => {
             console.log(response);
@@ -83,14 +93,27 @@ async function fetchUSAJobsApi(req, res) {
     })
         .then(response => response.json())
         .then(data => {
-            res.writeHead(200, headers);
-            res.end(JSON.stringify(data))
+            const extractedData = data.SearchResult.SearchResultItems.map(item => ({
+                jobTitle: item.MatchedObjectDescriptor.PositionTitle,
+                jobDescription: item.MatchedObjectDescriptor.UserArea.Details.MajorDuties,
+                organizationName: item.MatchedObjectDescriptor.OrganizationName,
+                url: item.MatchedObjectDescriptor.PositionURI,
+                jobBoard: 'USAJOBS'
+            }));
+
+            return extractedData;
         })
         .catch(error => {
             console.log(error);
             res.writeHead(500, headers);
             res.end(JSON.stringify(response));
         });
+}
+
+function mergeData(adzunaData, usajobsData) {
+    const mergedData = adzunaData.concat(usajobsData);
+
+    return mergedData;
 }
 
 module.exports = router
