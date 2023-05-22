@@ -6,5 +6,9 @@ module.exports = {
 
     USAJOBS_USER_AGENT: 'diabahmed919@gmail.com',
     USAJOBS_HOST: 'data.usajobs.gov',
-    USAJOBS_AUTHORIZATION_KEY: 'i5YnXNgSQKcUynCz41hVHwyRkur22Nk+omlvDf7EllY='
+    USAJOBS_AUTHORIZATION_KEY: 'i5YnXNgSQKcUynCz41hVHwyRkur22Nk+omlvDf7EllY=',
+
+
+    RapidAPIKey: 'b16dc84a03msh58fcabf378c99b0p10a22bjsnac2b4c24f2a8',
+    RapidAPIHost: 'indeed12.p.rapidapi.com'
   };

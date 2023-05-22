@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const config = require('../config');
 const cors = require('cors')
 const inputURL = require('url');
+const { title } = require('process');
 
 
 //Give write access to server
@@ -29,11 +30,12 @@ const headers = {
 // Getting all jobs
 router.get('/', async (req, res) => {
     try {
-        const adzunaData = await fetchAdzunaApi(req, res);
-        const usajobsData = await fetchUSAJobsApi(req, res);
+        //const adzunaData = await fetchAdzunaApi(req, res);
+        //const usajobsData = await fetchUSAJobsApi(req, res);
+        const indeedData = await fetchIndeedApi(req, res);
 
-        const mergedData = mergeData(adzunaData, usajobsData);
-        res.json(mergedData);
+        //const mergedData = mergeData(adzunaData, usajobsData);
+        res.json(indeedData);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch external data' });
     }
@@ -95,13 +97,80 @@ async function fetchUSAJobsApi(req, res) {
         .then(data => {
             const extractedData = data.SearchResult.SearchResultItems.map(item => ({
                 jobTitle: item.MatchedObjectDescriptor.PositionTitle,
-                jobDescription: item.MatchedObjectDescriptor.UserArea.Details.MajorDuties,
+                jobDescription: item.MatchedObjectDescriptor.UserArea.Details.MajorDuties[0],
                 organizationName: item.MatchedObjectDescriptor.OrganizationName,
                 url: item.MatchedObjectDescriptor.PositionURI,
                 jobBoard: 'USAJOBS'
             }));
 
             return extractedData;
+        })
+        .catch(error => {
+            console.log(error);
+            res.writeHead(500, headers);
+            res.end(JSON.stringify(response));
+        });
+}
+
+function mergeData(adzunaData, usajobsData) {
+    const mergedData = adzunaData.concat(usajobsData);
+
+    return mergedData;
+}
+
+
+async function fetchIndeedApi(req, res) {
+    const decodeParams = searchParams => Array
+        .from(searchParams.keys())
+        .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
+
+    const requestURL = inputURL.parse(req.url);
+    const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
+    const { search, location } = decodedParams;
+
+    const targetURL = `https://${config.RapidAPIHost}/jobs/search?query=${search}&location=${location}`;
+
+    console.log(`Proxy GET request to : ${targetURL}`);
+    return fetch(targetURL, {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': config.RapidAPIKey,
+            'X-RapidAPI-Host': config.RapidAPIHost
+        }
+    })
+        .then(response => response.json())
+        .then(async data => {
+            const fullJobData = [];
+            for (job of data.hits) {
+                const jobLink = job.link
+                console.log(jobLink)
+                const jobURL = `https://${config.RapidAPIHost}${jobLink}`
+                const fullJobResponse = await fetch(jobURL, {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': config.RapidAPIKey,
+                        'X-RapidAPI-Host': config.RapidAPIHost,
+                    },
+                });
+                const fullJobDataResponse = await fullJobResponse.json();
+
+                const { job_title, description, indeed_final_url } = fullJobDataResponse;
+                const organizationName = fullJobDataResponse.company?.name;
+
+                const jobData = {
+                    jobTitle: job_title,
+                    jobDescription: description,
+                    organizationName: organizationName,
+                    url: indeed_final_url,
+                    jobBoard: 'indeed'
+                };
+
+                fullJobData.push(jobData);
+            }
+
+            return fullJobData;
+            //res.writeHead(200, headers);
+            //res.end(JSON.stringify(data));
         })
         .catch(error => {
             console.log(error);
