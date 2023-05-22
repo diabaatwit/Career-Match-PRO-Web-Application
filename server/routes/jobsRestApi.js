@@ -32,10 +32,11 @@ router.get('/', async (req, res) => {
     try {
         //const adzunaData = await fetchAdzunaApi(req, res);
         //const usajobsData = await fetchUSAJobsApi(req, res);
-        const indeedData = await fetchIndeedApi(req, res);
+        //const indeedData = await fetchIndeedApi(req, res);
+        const linkedinData = await fetchLinkedinApi(req, res);
 
         //const mergedData = mergeData(adzunaData, usajobsData);
-        res.json(indeedData);
+        res.json(linkedinData);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch external data' });
     }
@@ -112,14 +113,7 @@ async function fetchUSAJobsApi(req, res) {
         });
 }
 
-function mergeData(adzunaData, usajobsData) {
-    const mergedData = adzunaData.concat(usajobsData);
-
-    return mergedData;
-}
-
-
-async function fetchIndeedApi(req, res) {
+/*async function fetchIndeedApi(req, res) {
     const decodeParams = searchParams => Array
         .from(searchParams.keys())
         .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
@@ -148,8 +142,8 @@ async function fetchIndeedApi(req, res) {
                 const fullJobResponse = await fetch(jobURL, {
                     method: 'GET',
                     headers: {
-                        'X-RapidAPI-Key': config.RapidAPIKey,
-                        'X-RapidAPI-Host': config.RapidAPIHost,
+                        'X-RapidAPI-Key': config.RAPID_API_KEY,
+                        'X-RapidAPI-Host': config.RAPID_INDEED_API_HOST,
                     },
                 });
                 const fullJobDataResponse = await fullJobResponse.json();
@@ -177,10 +171,64 @@ async function fetchIndeedApi(req, res) {
             res.writeHead(500, headers);
             res.end(JSON.stringify(response));
         });
+}*/
+
+async function fetchLinkedinApi(req, res) {
+    const decodeParams = searchParams => Array
+        .from(searchParams.keys())
+        .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
+
+    const requestURL = inputURL.parse(req.url);
+    const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
+    const { search, location } = decodedParams;
+
+    const targetURL = 'https://linkedin-jobs-search.p.rapidapi.com/';
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': config.RAPID_API_KEY,
+            'X-RapidAPI-Host': config.RAPID_LINKEDIN_API_HOST
+        },
+        body: JSON.stringify({
+            search_terms: search,
+            location: location,
+            page: '1'
+        })
+    }
+
+    console.log(`Proxy POST request to : ${targetURL}`);
+    return fetch(targetURL, options)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Invalid response from LinkedIn Jobs API');
+            }
+        })
+        .then(data => {
+            const extractedData = data.map(item => ({
+                jobTitle: item.job_title,
+                jobDescription: '',
+                jobLocation: item.job_location,
+                organizationName: item.company_name,
+                url: item.linkedin_job_url_cleaned,
+                jobBoard: 'Linkedin'
+            }));
+
+            return extractedData;
+
+        })
+        .catch(error => {
+            console.log(error);
+            res.writeHead(500, headers);
+            res.end(JSON.stringify(response));
+        });
 }
 
-function mergeData(adzunaData, usajobsData) {
-    const mergedData = adzunaData.concat(usajobsData);
+
+function mergeData(data, otherData) {
+    const mergedData = data.concat(otherData);
 
     return mergedData;
 }
