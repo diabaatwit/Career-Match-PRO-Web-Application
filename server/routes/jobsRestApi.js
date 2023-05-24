@@ -30,13 +30,8 @@ const headers = {
 // Getting all jobs
 router.get('/', async (req, res) => {
     try {
-        //const adzunaData = await fetchAdzunaApi(req, res);
-        //const usajobsData = await fetchUSAJobsApi(req, res);
-        //const indeedData = await fetchIndeedApi(req, res);
-        const linkedinData = await fetchLinkedinApi(req, res);
-
-        //const mergedData = mergeData(adzunaData, usajobsData);
-        res.json(linkedinData);
+        const jobsData = await mergeData(req, res);
+        res.json(jobsData);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch external data' });
     }
@@ -55,22 +50,29 @@ async function fetchAdzunaApi(req, res) {
 
     console.log(`Proxy GET request to : ${targetURL}`);
     return fetch(targetURL)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Invalid response from Adzuna API');
+            }
+        })
         .then(data => {
             const extractedData = data.results.map(item => ({
                 jobTitle: item.title,
                 jobDescription: item.description,
+                jobLocation: item.location.display_name,
                 organizationName: item.company.display_name,
+                salaryRange: `$${item.salary_min} - estimated`,
                 url: item.redirect_url,
                 jobBoard: 'Adzuna'
             }));
 
             return extractedData;
         })
-        .catch(response => {
-            console.log(response);
-            res.writeHead(500, headers);
-            res.end(JSON.stringify(response));
+        .catch(error => {
+            console.log(error);
+            return [];
         });
 }
 
@@ -94,22 +96,30 @@ async function fetchUSAJobsApi(req, res) {
             'Authorization-Key': config.USAJOBS_AUTHORIZATION_KEY
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Invalid response from USAJOBS API');
+            }
+        })
         .then(data => {
             const extractedData = data.SearchResult.SearchResultItems.map(item => ({
                 jobTitle: item.MatchedObjectDescriptor.PositionTitle,
                 jobDescription: item.MatchedObjectDescriptor.UserArea.Details.MajorDuties[0],
                 organizationName: item.MatchedObjectDescriptor.OrganizationName,
+                salaryRange: `$${item.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange} - $${item.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange}`,
                 url: item.MatchedObjectDescriptor.PositionURI,
                 jobBoard: 'USAJOBS'
             }));
 
             return extractedData;
+            /*res.writeHead(200, headers);
+            res.end(JSON.stringify(data));*/
         })
         .catch(error => {
             console.log(error);
-            res.writeHead(500, headers);
-            res.end(JSON.stringify(response));
+            return[];
         });
 }
 
@@ -221,16 +231,25 @@ async function fetchLinkedinApi(req, res) {
         })
         .catch(error => {
             console.log(error);
-            res.writeHead(500, headers);
-            res.end(JSON.stringify(response));
+            return [];
         });
 }
 
 
-function mergeData(data, otherData) {
-    const mergedData = data.concat(otherData);
+async function mergeData(req, res) {
+    try {
+        const adzunaData = await fetchAdzunaApi(req, res);
+        const usajobsData = await fetchUSAJobsApi(req, res);
+        //const indeedData = await fetchIndeedApi(req, res);
+        //const linkedinData = await fetchLinkedinApi(req, res);
 
-    return mergedData;
+        const mergedData = adzunaData.concat(usajobsData);
+
+        return mergedData;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to fetch data from one or more APIs');
+    }
 }
 
 module.exports = router
