@@ -44,9 +44,12 @@ router.get('/:id', getJob, (req, res) => {
 // adding a job
 router.post('/', async (req, res) => {
     const job = new Job({
-        title: req.body.title,
-        location: req.body.location,
-        description: req.body.description,
+        jobTitle: req.body.jobTitle,
+        jobLocation: req.body.jobLocation,
+        jobDescription: req.body.jobDescription,
+        organizationName: req.body.organizationName,
+        salary: req.body.salary,
+        jobBoard: req.body.jobBoard,
         url: req.body.url,
         accountID: req.body.accountID,
     })
