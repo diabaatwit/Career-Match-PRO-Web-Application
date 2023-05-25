@@ -16,12 +16,15 @@ class JobCard extends Component {
         this.fetchingJobs()
     }
 
-    async saveJob(jobTitle, jobLocation, jobDescription, jobUrl) {
+    async saveJob(jobTitle, jobLocation, jobDescription, organizationName, salary, jobBoard, url) {
         const newSavedJob = {
-            title: jobTitle,
-            date: jobLocation,
-            description: jobDescription,
-            url: jobUrl,
+            jobTitle: jobTitle,
+            jobLocation: jobLocation,
+            jobDescription: jobDescription,
+            organizationName: organizationName,
+            salary: salary,
+            jobBoard: jobBoard,
+            url: url,
             accountID: localStorage.getItem('userID'),
         }
 
@@ -51,16 +54,26 @@ class JobCard extends Component {
         // fetch jobs
         let url = 'http://localhost:3001/jobs/?search=' + localStorage.getItem("jobTitle") + '&location=' + localStorage.getItem("location")
         console.log(url)
-        fetch(url).then(response => response.json())
-            .then(({ results }) => {
-                console.log(this.state.isLoading)
-                console.log(results)
-                this.setState({ results })
-                console.log(this.state.results)
-                console.log(localStorage.getItem('userID'))
-                this.setState({ isLoading: false })
-                console.log(this.state.isLoading)
-            })
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error('Request failed');
+            }
+        
+            const results = await response.json();
+            console.log(results);
+            this.setState({ results: results }, () => {
+              console.log('Results are:');
+              console.log(this.state.results);
+              console.log(localStorage.getItem('userID'));
+              this.setState({ isLoading: false }, () => {
+                console.log(this.state.isLoading);
+              });
+            });
+          } catch (error) {
+            console.log('Error:', error);
+            this.setState({ isLoading: false });
+          }
     }
 
     render() {
@@ -75,11 +88,13 @@ class JobCard extends Component {
                     <div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">{job.title}</h4>
-                                <h5>{job.location.display_name}</h5>
-                                <p class="card-text">{job.description}</p>
-                                <button class='btn' onClick={() => { window.open(job.redirect_url, "_blank") }}>View Job</button>
-                                <input type="button" value={this.state.saveText} class='btn' id='saveBtn' onClick={(e) => { e.target.value = "Saved"; this.saveJob(job.title, job.location.display_name, job.description, job.redirect_url); }} />
+                                <h4 class="card-title">{job.jobTitle} - {job.jobBoard}</h4>
+                                <h5 class="card-title">{job.organizationName}</h5>
+                                <h6>{job.jobLocation}</h6>
+                                <h6>{job.salary}</h6>
+                                <p class="card-text">{job.jobDescription}</p>
+                                <button class='btn' onClick={() => { window.open(job.url, "_blank") }}>View Job</button>
+                                <input type="button" value={this.state.saveText} class='btn' id='saveBtn' onClick={(e) => { e.target.value = "Saved"; this.saveJob(job.jobTitle, job.jobLocation, job.jobDescription, job.organizationName, job.salary, job.jobBoard, job.url); }} />
                             </div>
                         </div>
                         <br />

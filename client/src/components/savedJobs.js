@@ -10,7 +10,7 @@ class SearchJob extends Component {
         }
     }
 
- 
+
 
     // authorize user's input
     async componentDidMount() {
@@ -20,8 +20,8 @@ class SearchJob extends Component {
         if (response.ok) {
             const allResults = await response.json()
             console.log(allResults)
-            for(let i = 0; i < allResults.length; i++){
-                if(allResults[i].accountID == localStorage.getItem('userID')){
+            for (let i = 0; i < allResults.length; i++) {
+                if (allResults[i].accountID == localStorage.getItem('userID')) {
                     results[i] = allResults[i]
                 }
             }
@@ -29,7 +29,7 @@ class SearchJob extends Component {
             console.log(results)
 
             this.setState({ results })
-        } 
+        }
     }
 
     async unsaveJob(jobID) {
@@ -38,8 +38,8 @@ class SearchJob extends Component {
         }
 
         await fetch(`http://localhost:3001/savedjobs/` + jobID, options)
-        .then(response => response.text())
-        .catch(error => console.log('error', error)); 
+            .then(response => response.text())
+            .catch(error => console.log('error', error));
 
     }
 
@@ -49,10 +49,12 @@ class SearchJob extends Component {
                 <div>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">{job.title}</h4>
-                            <h5>{job.location}</h5>
-                            <p class="card-text">{job.description}</p>
-                            <button class='btn' onClick={() => {window.open(job.url, "_blank")}}>View Job</button>
+                            <h4 class="card-title">{job.jobTitle} - {job.jobBoard}</h4>
+                            <h5 class="card-title">{job.organizationName}</h5>
+                            <h6>{job.jobLocation}</h6>
+                            <h6>{job.salary}</h6>
+                            <p class="card-text">{job.jobDescription}</p>
+                            <button class='btn' onClick={() => { window.open(job.url, "_blank") }}>View Job</button>
                             <input type="button" value="Unsave" class='btn' id='unsaveBtn' onClick={(e) => { e.target.value = "Unsaved"; this.unsaveJob(job._id); }} />
                         </div>
                     </div>
@@ -64,7 +66,7 @@ class SearchJob extends Component {
 
     render() {
         const { results } = this.state
-        return  results.length > 0 ? (
+        return results.length > 0 ? (
             <div class='all'>
                 <h2 className='savedJobsTitle'>Saved Jobs</h2>
                 {this.jobCard()}

@@ -3,17 +3,29 @@ const mongoose = require('mongoose')
 
 // patient schema that will help us connecting to the db.
 const jobSchema = new mongoose.Schema({
-    title: {
+    jobTitle: {
         type: String,
         //required: true
     },
-    location: {
+    jobLocation: {
         type: String,
         //required: true
     },
-    description: {
+    jobDescription: {
         type: String,
         //required: true
+    },
+    organizationName: {
+        type: String,
+        // required: true
+    },
+    salary: {
+        type: String,
+        // required: true
+    },
+    jobBoard: {
+        type: String,
+        // required: true
     },
     url: {
         type: String,
