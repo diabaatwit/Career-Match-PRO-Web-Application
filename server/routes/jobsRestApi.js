@@ -63,7 +63,7 @@ async function fetchAdzunaApi(req, res) {
                 jobDescription: item.description,
                 jobLocation: item.location.display_name,
                 organizationName: item.company.display_name,
-                salaryRange: `$${item.salary_min} - estimated`,
+                salary: `$${item.salary_min} - estimated`,
                 url: item.redirect_url,
                 jobBoard: 'Adzuna'
             }));
@@ -107,8 +107,9 @@ async function fetchUSAJobsApi(req, res) {
             const extractedData = data.SearchResult.SearchResultItems.map(item => ({
                 jobTitle: item.MatchedObjectDescriptor.PositionTitle,
                 jobDescription: item.MatchedObjectDescriptor.UserArea.Details.MajorDuties[0],
+                jobLocation: item.MatchedObjectDescriptor.PositionLocationDisplay,
                 organizationName: item.MatchedObjectDescriptor.OrganizationName,
-                salaryRange: `$${item.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange} - $${item.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange}`,
+                salary: `$${item.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange} - $${item.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange}`,
                 url: item.MatchedObjectDescriptor.PositionURI,
                 jobBoard: 'USAJOBS'
             }));
@@ -183,6 +184,59 @@ async function fetchUSAJobsApi(req, res) {
         });
 }*/
 
+async function fetchIndeedApi(req, res) {
+    const decodeParams = searchParams => Array
+        .from(searchParams.keys())
+        .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
+
+    const requestURL = inputURL.parse(req.url);
+    const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
+    const { search, location } = decodedParams;
+
+    const targetURL = 'https://indeed11.p.rapidapi.com/';
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': config.RAPID_API_KEY,
+            'X-RapidAPI-Host': config.RAPID_INDEED_API_HOST
+        },
+        body: JSON.stringify({
+            search_terms: search,
+            location: location,
+            page: '1'
+        })
+    }
+
+    console.log(`Proxy POST request to : ${targetURL}`);
+    return fetch(targetURL, options)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Invalid response from LinkedIn Jobs API');
+            }
+        })
+        .then(data => {
+            const extractedData = data.map(item => ({
+                jobTitle: item.job_title,
+                jobDescription: '',
+                jobLocation: item.location,
+                organizationName: item.company_name,
+                salary: item.salary,
+                url: item.url,
+                jobBoard: 'Indeed'
+            }));
+
+            return extractedData;
+
+        })
+        .catch(error => {
+            console.log(error);
+            return [];
+        });
+}
+
 async function fetchLinkedinApi(req, res) {
     const decodeParams = searchParams => Array
         .from(searchParams.keys())
@@ -222,6 +276,7 @@ async function fetchLinkedinApi(req, res) {
                 jobDescription: '',
                 jobLocation: item.job_location,
                 organizationName: item.company_name,
+                salary: '',
                 url: item.linkedin_job_url_cleaned,
                 jobBoard: 'Linkedin'
             }));

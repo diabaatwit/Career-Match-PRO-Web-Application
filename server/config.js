@@ -10,6 +10,6 @@ module.exports = {
 
 
     RAPID_API_KEY: 'b16dc84a03msh58fcabf378c99b0p10a22bjsnac2b4c24f2a8',
-    RAPID_INDEED_API_HOST: 'indeed12.p.rapidapi.com',
+    RAPID_INDEED_API_HOST: 'indeed11.p.rapidapi.com',
     RAPID_LINKEDIN_API_HOST: 'linkedin-jobs-search.p.rapidapi.com'
   };
