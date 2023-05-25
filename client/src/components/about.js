@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import '../css/about.css'
-import team from '../images/team.jpeg'
 
 class AboutUs extends Component {
     render() {
@@ -24,11 +23,6 @@ class AboutUs extends Component {
                             So our goal is create a website that allows users to search for jobs from all these job boards in one time. Simply, We are trying to merge all job boards websites in a one website.</div>
                     </div>
                     <br /><br />
-                    <div class='team'>
-                        <img src={team} />
-                    </div>
-
-
                 </div>
             </body>
 

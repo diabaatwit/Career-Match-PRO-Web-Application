@@ -3,6 +3,7 @@ import '../css/header.css'
 
 class Header extends Component {
     render() {
+        let websiteTitle = 'Career Match PRO'
         let location = window.location.pathname.split('/')
         return location[1] == 'signup' || location[1] == 'login' ? (
             <header>
@@ -11,8 +12,8 @@ class Header extends Component {
                         <div>
                             <a href="/">
                                 <h1 className='title'>
-                                    
-                                    Job Search Web App
+
+                                    {websiteTitle}
                                 </h1>
                             </a>
                         </div>
@@ -26,8 +27,8 @@ class Header extends Component {
                         <div>
                             <a href="/">
                                 <h1 className='title'>
-                                    
-                                    Job Search Web App
+
+                                    {websiteTitle}
                                 </h1>
                             </a>
                         </div>
