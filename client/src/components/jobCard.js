@@ -95,34 +95,72 @@ class JobCard extends Component {
 
     render() {
         console.log("we are here in the job card component")
-        return this.state.isLoading ? (
-            <div class="loader">
-                <ThreeDots type="ThreeDots" color="#BADA55" height="100" width="100" />
-            </div>
-        ) : (
-            this.state.results.map((job, index) => {
-                const isJobSelected = this.state.selectedJobIndex === index;
-                return (
-                    <div class="box">
-                        <div class="card">
-                            <button class="card-body" onClick={() => this.toggleJobInfo(index)}>
-                                <h4 class="card-title">{job.jobTitle} - {job.jobBoard}</h4>
-                                <h5 class="card-title">{job.organizationName}</h5>
-                                <h6>{job.jobLocation}</h6>
-                                <h6>{job.salary}</h6>
-                                <p class="card-text">{job.jobDescription}</p>
-                                <button class='btn' onClick={() => { window.open(job.url, "_blank") }}>View Job</button>
-                                <input type="button" value={this.state.saveText} class='btn' id='saveBtn' onClick={(e) => { e.target.value = "Saved"; this.saveJob(job.jobTitle, job.jobLocation, job.jobDescription, job.organizationName, job.salary, job.jobBoard, job.url); }} />
-                            </button>
+        return (
+            <div className="container">
+              <div className="jobCardsContainer">
+                {this.state.isLoading ? (
+                  <div className="loader">
+                    <ThreeDots type="ThreeDots" color="#BADA55" height={100} width={100} />
+                  </div>
+                ) : (
+                  this.state.results.map((job, index) => {
+                    const isJobSelected = this.state.selectedJobIndex === index;
+                    return (
+                      <div key={index} className={`card${isJobSelected ? " selected" : ""}`}>
+                        <div className="card-body" onClick={() => this.toggleJobInfo(index)}>
+                          <h4 className="card-title">{job.jobTitle} - {job.jobBoard}</h4>
+                          <h5 className="card-title">{job.organizationName}</h5>
+                          <h6>{job.jobLocation}</h6>
+                          <h6>{job.salary}</h6>
+                          <p className="card-text">{job.jobDescription}</p>
+                          <button className="btn" onClick={() => { window.open(job.url, "_blank"); }}>View Job</button>
+                          <input
+                            type="button"
+                            value={this.state.saveText}
+                            className="btn"
+                            id="saveBtn"
+                            onClick={(e) => {
+                              e.target.value = "Saved";
+                              this.saveJob(
+                                job.jobTitle,
+                                job.jobLocation,
+                                job.jobDescription,
+                                job.organizationName,
+                                job.salary,
+                                job.jobBoard,
+                                job.url
+                              );
+                            }}
+                          />
                         </div>
-
-                        {isJobSelected && this.jobInfo()} 
-
-
-                    </div>
-                )
-            })
-        )
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+              <div className="jobInfoContainer">
+                {this.state.results.map((job, index) => {
+                  const isJobSelected = this.state.selectedJobIndex === index;
+                  return (
+                    <React.Fragment key={index}>
+                      {isJobSelected && (
+                        <div className="jobInfoBody">
+                          <h4>Job Information</h4>
+                          <p>This is a test message for the jobInfo function.</p>
+                          <h4>Job Information</h4>
+                          <p>This is a test message for the jobInfo function.</p>
+                          <h4>Job Information</h4>
+                          <p>This is a test message for the jobInfo function.</p>
+                          <h4>Job Information</h4>
+                          <p>This is a test message for the jobInfo function.</p>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </div>
+          );
     }
 }
 
