@@ -9,6 +9,7 @@ class JobCard extends Component {
             results: [],
             saveText: "Save Job",
             isLoading: false,
+            selectedJobIndex: null
         }
     }
 
@@ -57,23 +58,39 @@ class JobCard extends Component {
         try {
             const response = await fetch(url);
             if (!response.ok) {
-              throw new Error('Request failed');
+                throw new Error('Request failed');
             }
-        
+
             const results = await response.json();
             console.log(results);
             this.setState({ results: results }, () => {
-              console.log('Results are:');
-              console.log(this.state.results);
-              console.log(localStorage.getItem('userID'));
-              this.setState({ isLoading: false }, () => {
-                console.log(this.state.isLoading);
-              });
+                console.log('Results are:');
+                console.log(this.state.results);
+                console.log(localStorage.getItem('userID'));
+                this.setState({ isLoading: false }, () => {
+                    console.log(this.state.isLoading);
+                });
             });
-          } catch (error) {
+        } catch (error) {
             console.log('Error:', error);
             this.setState({ isLoading: false });
-          }
+        }
+    }
+
+    toggleJobInfo = jobIndex => {
+        this.setState(prevState => ({
+          selectedJobIndex: prevState.selectedJobIndex === jobIndex ? null : jobIndex
+        }));
+      };
+
+    jobInfo = () => {
+        console.log("here we rendered the job info card")
+        return (
+            <div class="jobInfo_body">
+                <h4>Job Information</h4>
+                <p>This is a test message for jobInfo function.</p>
+            </div>
+        )
     }
 
     render() {
@@ -83,11 +100,12 @@ class JobCard extends Component {
                 <ThreeDots type="ThreeDots" color="#BADA55" height="100" width="100" />
             </div>
         ) : (
-            this.state.results.map(job => {
+            this.state.results.map((job, index) => {
+                const isJobSelected = this.state.selectedJobIndex === index;
                 return (
-                    <div>
+                    <div class="box">
                         <div class="card">
-                            <div class="card-body">
+                            <button class="card-body" onClick={() => this.toggleJobInfo(index)}>
                                 <h4 class="card-title">{job.jobTitle} - {job.jobBoard}</h4>
                                 <h5 class="card-title">{job.organizationName}</h5>
                                 <h6>{job.jobLocation}</h6>
@@ -95,9 +113,12 @@ class JobCard extends Component {
                                 <p class="card-text">{job.jobDescription}</p>
                                 <button class='btn' onClick={() => { window.open(job.url, "_blank") }}>View Job</button>
                                 <input type="button" value={this.state.saveText} class='btn' id='saveBtn' onClick={(e) => { e.target.value = "Saved"; this.saveJob(job.jobTitle, job.jobLocation, job.jobDescription, job.organizationName, job.salary, job.jobBoard, job.url); }} />
-                            </div>
+                            </button>
                         </div>
-                        <br />
+
+                        {isJobSelected && this.jobInfo()} 
+
+
                     </div>
                 )
             })
