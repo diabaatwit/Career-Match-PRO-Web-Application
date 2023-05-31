@@ -3,16 +3,18 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  position: fixed;
   overflow: hidden;
+  
 }
 
 .all {
+  
   background: linear-gradient(120deg, #2980b9, #8e44ad);
   width: 100%;
-  height: 100vh;
+  
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
 
 .searchForm {
@@ -133,11 +135,14 @@ form .search_field {
   display: flex;
   height: 100vh;
   flex-direction: row;
+  overflow: hidden;
 }
 
 .jobCardsContainer {
   flex: 1; 
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
   width: 35%;
   
 }
@@ -145,7 +150,19 @@ form .search_field {
 .jobInfoContainer {
   flex: 1; 
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
   width: 65%;
+}
+
+.jobCardsContainer::-webkit-scrollbar,
+.jobInfoContainer::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.jobCardsContainer::-webkit-scrollbar-thumb,
+.jobInfoContainer::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
 .card {
