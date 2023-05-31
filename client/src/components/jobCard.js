@@ -9,7 +9,7 @@ class JobCard extends Component {
       results: [],
       saveText: "Save Job",
       isLoading: false,
-      selectedJobIndex: null
+      selectedJobIndex: 0
     }
   }
 
