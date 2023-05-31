@@ -79,7 +79,7 @@ class JobCard extends Component {
 
   toggleJobInfo = jobIndex => {
     this.setState(prevState => ({
-      selectedJobIndex: prevState.selectedJobIndex === jobIndex ? null : jobIndex
+      selectedJobIndex: prevState.selectedJobIndex === jobIndex ? prevState.selectedJobIndex : jobIndex
     }));
   };
 
