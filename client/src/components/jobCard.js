@@ -118,30 +118,44 @@ class JobCard extends Component {
               <React.Fragment key={index}>
                 {isJobSelected && (
                   <div className="jobInfoBody">
-                    <h4 className="card-title">{job.jobTitle} - {job.jobBoard}</h4>
-                    <h5 className="card-title">{job.organizationName}</h5>
-                    <h6>{job.jobLocation}</h6>
-                    <h6>{job.salary}</h6>
-                    <p className="card-text">{job.jobDescription}</p>
-                    <button className="btn" onClick={() => { window.open(job.url, "_blank"); }}>View Job</button>
-                    <input
-                      type="button"
-                      value={this.state.saveText}
-                      className="btn"
-                      id="saveBtn"
-                      onClick={(e) => {
-                        e.target.value = "Saved";
-                        this.saveJob(
-                          job.jobTitle,
-                          job.jobLocation,
-                          job.jobDescription,
-                          job.organizationName,
-                          job.salary,
-                          job.jobBoard,
-                          job.url
-                        );
-                      }}
-                    />
+                    <h4 className="jobInfoTitle">{job.jobTitle} - {job.jobBoard}</h4>
+                    <div className="jobInfoDetails">
+                      <div className="jobInfoColumn">
+                        <h5 className="jobInfoSubtitle">Organization:</h5>
+                        <p className="jobInfoText">{job.organizationName}</p>
+                        <h5 className="jobInfoSubtitle">Location:</h5>
+                        <p className="jobInfoText">{job.jobLocation}</p>
+                      </div>
+                      <div className="jobInfoColumn">
+                        <h5 className="jobInfoSubtitle">Salary:</h5>
+                        <p className="jobInfoText">{job.salary}</p>
+                      </div>
+                    </div>
+                    <div className="jobInfoDescription">
+                      <h5 className="jobInfoSubtitle">Description:</h5>
+                      <p className="jobInfoText">{job.jobDescription}</p>
+                    </div>
+                    <div className="jobInfoActions">
+                      <button className="btn" onClick={() => window.open(job.url, '_blank')}>View Job</button>
+                      <input
+                        type="button"
+                        value={this.state.saveText}
+                        className="btn"
+                        id="saveBtn"
+                        onClick={(e) => {
+                          e.target.value = 'Saved';
+                          this.saveJob(
+                            job.jobTitle,
+                            job.jobLocation,
+                            job.jobDescription,
+                            job.organizationName,
+                            job.salary,
+                            job.jobBoard,
+                            job.url
+                          );
+                        }}
+                      />
+                    </div>
                   </div>
                 )}
               </React.Fragment>

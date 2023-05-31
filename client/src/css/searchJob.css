@@ -186,6 +186,55 @@ form .search_field {
   border: 3px solid #BADA55;
 }
 
+.jobInfoTitle {
+  font-size: 24px;
+  color: #333;
+}
+
+.jobInfoDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.jobInfoColumn {
+  flex: 1;
+}
+
+.jobInfoSubtitle {
+  font-size: 16px;
+  color: #777;
+  margin-top: 10px;
+}
+
+.jobInfoText {
+  font-size: 16px;
+  color: #333;
+}
+
+.jobInfoActions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.jobInfoDescription {
+  margin-top: 20px;
+}
+
+.jobInfoDescription .jobInfoSubtitle {
+  margin-bottom: 10px;
+}
+
+.jobInfoDescription .jobInfoText {
+  font-size: 16px;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+
+
+
 
 /* Use flexbox for horizontal layout */
 /* .box {
