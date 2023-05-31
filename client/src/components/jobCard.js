@@ -83,15 +83,7 @@ class JobCard extends Component {
     }));
   };
 
-  jobInfo = () => {
-    console.log("here we rendered the job info card")
-    return (
-      <div class="jobInfo_body">
-        <h4>Job Information</h4>
-        <p>This is a test message for jobInfo function.</p>
-      </div>
-    )
-  }
+
 
   render() {
     console.log("we are here in the job card component")
@@ -112,7 +104,7 @@ class JobCard extends Component {
                     <h5 className="card-title">{job.organizationName}</h5>
                     <h6>{job.jobLocation}</h6>
                     <h6>{job.salary}</h6>
-                    
+
                   </div>
                 </div>
               );
