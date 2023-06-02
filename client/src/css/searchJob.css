@@ -1,10 +1,7 @@
 
-
 .all {
-  
   background: linear-gradient(120deg, #2980b9, #8e44ad);
   width: 100%;
-  
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -170,7 +167,6 @@ form .search_field {
 }
 
 .jobInfoBody {
-  
   margin: 10px;
   padding: 20px;
   background-color: #F6F6F6;
@@ -225,6 +221,111 @@ form .search_field {
 }
 
 
+/* This is for the serach area, two seach bars and one seach button*/
+.search_header {
+  height: 200px;
+  margin-top: 1%;
+  margin-left: 20%;
+  display: flex;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.welcome-text a:hover {
+  background: #fff;
+  color: #726363;
+}
+
+.search-field {
+  display: inline-block;
+  padding: 5px 20px;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+}
+
+/* .search_field input {
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.search_field label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.search_field span::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+}
+
+.search_field input:focus~label,
+.search_field input:valid~label {
+  top: -5px;
+  color: #2691d9;
+}
+
+.search_field input:focus~span::before,
+.search_field input:valid~span::before {
+  width: 100%;
+} */
+
+.type {
+  width: 400px;
+  margin-right: 20px;
+}
+
+.location {
+  width: 250px;
+  margin-right: 20px;
+}
+
+.search-btn {
+  height: 50px;
+  width: 150px;
+  background: #b73bff;
+  border: none;
+  color: #fff;
+  border-radius: 15px;
+  margin-right: 20px; /* Add margin between location bar and search button */
+}
+
+.search-btn:hover {
+  background: #0717ff;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.form-box {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+}
+
+.form-box h1 {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 40px;
+  margin-bottom: 2%;
+}
+/*   Search area */
 
 
 
@@ -233,7 +334,6 @@ form .search_field {
   display: flex;
   flex-wrap: wrap; 
 }
-
 
 .card {
   display: flex;

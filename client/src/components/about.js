@@ -12,20 +12,48 @@ class AboutUs extends Component {
                         <li><a href="/about">ABOUT</a></li>
                         <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
                     </ul>
-                    <div>
-                        <h1 class='about-title'>About Us</h1>
-                        <div class='about-body'>We are a team Research Team. A team of 3 students (Fengnan Zhang, Ahmed Diab, and Minh Quach). A students at Wentworth Institute of Technology.
-                            We are building a job board website that will help people apply for jobs and a more convinient way.</div>
+                    
+                        <div class="section about-section">
+                            <h2>About Us</h2>
+                            <p>As Wentworth students majoring in Computer Science, 
+                                we are fueled by our passion for science and our innate desire to 
+                                help people. We strongly believe in the power of technology to drive 
+                                positive change and make a difference in the lives of individuals and 
+                                communities. Through our studies and experiences, we have gained a deep 
+                                understanding of the capabilities of computer 
+                                science and its potential to solve complex problems.</p>
+                        </div>
+                        <div class="section mission-section">
+                            <h2>Our Mission</h2>
+                            <p>Our mission is to create a user-friendly job search platform that simplifies the process of finding and applying for jobs.</p>
+                        </div>
+                        <div class="section team-section">
+                            <h2>Our Team</h2>
+                            <div class="team-member">
+                                <img src="../images/jobBG.jpg" alt="Front-end Developer"></img>
+                                    <h3>Front-end Developer</h3>
+                                    <p>-----Description of the front-end developer.</p>
+                            </div>
+                            <div class="team-member">
+                                <img src="backend_dev.jpg" alt="Back-end Developer"></img>
+                                    <h3>Back-end Developer</h3>
+                                    <p>-----Description of the back-end developer.</p>
+                            </div>
+                        </div>
+                        <div class="section social-section">
+                            <h2>Social Information</h2>
+                            <ul>
+                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                        <div class="section contact-section">
+                            <h2>Contact Us</h2>
+                            <p>If you have any questions or need assistance, please feel free to contact us.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class='mission-title'>Our Mission</h1>
-                        <div class='mission-body'>Our mission is to help people search for jobs in a more convinient way. When anyone try to apply for jobs, they need to visit many job boards, like LinkedIn, Indeed and Monster, and apply for jobs in each one.
-                            So our goal is create a website that allows users to search for jobs from all these job boards in one time. Simply, We are trying to merge all job boards websites in a one website.</div>
-                    </div>
-                    <br /><br />
-                </div>
             </body>
-
 
         )
     }

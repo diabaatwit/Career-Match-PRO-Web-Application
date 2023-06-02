@@ -57,8 +57,8 @@ class SearchJob extends Component {
         return (
             <div class='all'>
                 <div class="searchForm">
-                    <h1>Search for Jobs!</h1>
-                    <form>
+                    {/* <h1>Search for Jobs!</h1> */}
+                    {/* <form>
                         <div id="invalidMsg"></div>
                         <div class="search_field">
                             <input type="text" required={true}
@@ -73,7 +73,24 @@ class SearchJob extends Component {
                             <label>Location</label>
                         </div>
                         <input id="searchBtn" value="Search" onClick={this.handleOnSubmit} />
-                    </form>
+                    </form> */}
+
+
+                    <div class="search_header">
+                        <form class="form-box">
+                            <h1>Search From Here ! </h1>
+                            <div>
+                                <input type="text" class="search-field type"
+                                    placeholder= "What are you looking for?"
+                                    onChange={(e) => this.setState({ jobTitleInput: e.target.value })}/>
+                                <input type="text" class="search-field location"
+                                    placeholder="Location"
+                                    onChange={(e) => this.setState({ locationInput: e.target.value })}/>
+                                <button class="search-btn" type="button" onClick={this.handleOnSubmit}>Search</button>
+                            </div>
+                        </form>
+                    </div>
+
 
                 </div>
                 {console.log("is clicked " + this.state.searchClicked)}
