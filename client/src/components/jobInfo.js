@@ -21,7 +21,7 @@ class JobInfo extends Component {
     // Perform save/unsave job API call based on the current page
     if (currentPage === '/home') {
       await this.saveJob(job);
-    } else if (currentPage === '/savedjobs') {
+    } else if (currentPage === '/savedJobs') {
       await this.unsaveJob(job);
     }
   };
@@ -55,9 +55,9 @@ class JobInfo extends Component {
           throw new Error('Failed to save job');
         }
       })
-      .then(savedJob => {
-        // Update the isSaved state based on the response
-        this.setState({ isActionOccurred: !!savedJob });
+      .then(() => {
+        // Update the isActionOccurred state after unsave is successful
+        this.setState({ isActionOccurred: true });
       })
       .catch(error => console.log('Error:', error));
   }
@@ -69,6 +69,10 @@ class JobInfo extends Component {
 
     await fetch(`http://localhost:3001/savedjobs/` + job._id, options)
       .then(response => response.text())
+      .then(() => {
+        // Update the isActionOccurred state after unsave is successful
+        this.setState({ isActionOccurred: true });
+      })
       .catch(error => console.log('error', error));
 
   }
@@ -78,7 +82,7 @@ class JobInfo extends Component {
     const { isActionOccurred } = this.state;
     console.log("before clicking, isActionOccurred is: " + isActionOccurred)
 
-    const actionButtonText = currentPage === '/home' ? (isActionOccurred ? 'Saved' : 'Save Job') : (isActionOccurred ? 'Unsaved' : 'Unsave Job');
+    const actionButtonText = currentPage === '/home' ? (isActionOccurred ? 'Saved' : 'Save Job') : (isActionOccurred ? 'Unsaved' : 'Unsave');
     return (
       <div className="jobInfoBody">
         <h4 className="jobInfoTitle">{job.jobTitle} - {job.jobBoard}</h4>
