@@ -3,12 +3,12 @@ import '../css/searchJob.css';
 
 class JobCard extends Component {
   render() {
-    const { job, isSelected, toggleJobInfo } = this.props;
+    const { job, isSelected, toggleJobInfo, index } = this.props;
 
     return (
       <div
         className={`card${isSelected ? ' selected' : ''}`}
-        onClick={toggleJobInfo}
+        onClick={() => toggleJobInfo(index)}
       >
         <div className="card-body">
           <h4 className="card-title">{job.jobTitle} - {job.jobBoard}</h4>

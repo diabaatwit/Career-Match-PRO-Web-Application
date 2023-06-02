@@ -19,39 +19,6 @@ class Jobs extends Component {
     this.fetchingJobs()
   }
 
-  async saveJob(jobTitle, jobLocation, jobDescription, organizationName, salary, jobBoard, url) {
-    const newSavedJob = {
-      jobTitle: jobTitle,
-      jobLocation: jobLocation,
-      jobDescription: jobDescription,
-      organizationName: organizationName,
-      salary: salary,
-      jobBoard: jobBoard,
-      url: url,
-      accountID: localStorage.getItem('userID'),
-    }
-
-    const newSavedJobOptions = {
-
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newSavedJob)
-
-    }
-
-    await fetch("http://localhost:3001/savedJobs", newSavedJobOptions)
-      .then(response => response.text())
-      .catch(error => console.log('error', error));
-  }
-
-  changeText = (id, saveText) => {
-    console.log("id=" + id);
-
-    this.setState({ saveText });
-  }
-
-  // authorize user's input
   async fetchingJobs() {
     this.setState({ isLoading: true })
     // fetch jobs
@@ -102,7 +69,6 @@ class Jobs extends Component {
           ) : (
             results.map((job, index) => (
               <JobCard
-                key={index}
                 job={job}
                 isSelected={index === selectedJobIndex}
                 toggleJobInfo={() => this.toggleJobInfo(index)}
@@ -111,7 +77,7 @@ class Jobs extends Component {
           )}
         </div>
         <div className="jobInfoContainer">
-          {selectedJob && <JobInfo job={selectedJob} />}
+          {selectedJob && <JobInfo job={selectedJob} currentPage="/home"/>}
         </div>
       </div>
     );
