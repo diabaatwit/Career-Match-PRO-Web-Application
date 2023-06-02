@@ -1,12 +1,15 @@
 
 import React, { Component } from 'react';
 import '../css/searchJob.css'
+import JobCard from './jobCard';
+import JobInfo from './jobInfo';
 
-class SearchJob extends Component {
+class SavedJobs extends Component {
     constructor(props) {
         super(props)
         this.state = {
             results: [],
+            selectedJobIndex: 0
         }
     }
 
@@ -20,11 +23,7 @@ class SearchJob extends Component {
         if (response.ok) {
             const allResults = await response.json()
             console.log(allResults)
-            for (let i = 0; i < allResults.length; i++) {
-                if (allResults[i].accountID == localStorage.getItem('userID')) {
-                    results[i] = allResults[i]
-                }
-            }
+            results = allResults.filter(job => job.accountID == localStorage.getItem('userID'));
 
             console.log(results)
 
@@ -43,33 +42,36 @@ class SearchJob extends Component {
 
     }
 
-    jobCard = () => {
-        return this.state.results.map(job => {
-            return (
-                <div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">{job.jobTitle} - {job.jobBoard}</h4>
-                            <h5 class="card-title">{job.organizationName}</h5>
-                            <h6>{job.jobLocation}</h6>
-                            <h6>{job.salary}</h6>
-                            <p class="card-text">{job.jobDescription}</p>
-                            <button class='btn' onClick={() => { window.open(job.url, "_blank") }}>View Job</button>
-                            <input type="button" value="Unsave" class='btn' id='unsaveBtn' onClick={(e) => { e.target.value = "Unsaved"; this.unsaveJob(job._id); }} />
-                        </div>
-                    </div>
-                    <br />
-                </div>
-            )
-        })
-    }
+    toggleJobInfo = jobIndex => {
+        this.setState(prevState => ({
+            selectedJobIndex: prevState.selectedJobIndex === jobIndex ? prevState.selectedJobIndex : jobIndex
+        }));
+    };
+
+
 
     render() {
-        const { results } = this.state
+        const { results, selectedJobIndex } = this.state
+        const selectedJob = results[selectedJobIndex];
         return results.length > 0 ? (
             <div class='all'>
                 <h2 className='savedJobsTitle'>Saved Jobs</h2>
-                {this.jobCard()}
+                <div className="container">
+                    <div className="jobCardsContainer">
+                        {(
+                            results.map((job, index) => (
+                                <JobCard
+                                    job={job}
+                                    isSelected={index === selectedJobIndex}
+                                    toggleJobInfo={() => this.toggleJobInfo(index)}
+                                />
+                            ))
+                        )}
+                    </div>
+                    <div className="jobInfoContainer">
+                        {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" />}
+                    </div>
+                </div>
             </div>
         ) : (
             <h1 class='noSavedJobs'>You don't have any saved jobs yet</h1>
@@ -77,4 +79,4 @@ class SearchJob extends Component {
     }
 }
 
-export default SearchJob;
+export default SavedJobs;

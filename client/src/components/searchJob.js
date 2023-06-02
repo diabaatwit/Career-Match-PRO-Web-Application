@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import '../css/searchJob.css'
-import JobCard from './jobCard';
+import Jobs from './jobs';
 
 class SearchJob extends Component {
     constructor(props) {
@@ -13,6 +13,24 @@ class SearchJob extends Component {
             key: 1,
         }
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        // apply style to the html tag to hide the main scrollbar of the page
+        document.documentElement.style.height = '100%';
+        document.documentElement.style.margin = '0';
+        document.documentElement.style.padding = '0';
+        document.documentElement.style.position = 'fixed';
+        document.documentElement.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        // reset the styles we applied on html tag when compsonent unmounts
+        document.documentElement.style.height = '';
+        document.documentElement.style.margin = '';
+        document.documentElement.style.padding = '';
+        document.documentElement.style.position = '';
+        document.documentElement.style.overflow = '';
     }
 
     handleOnSubmit = (e) => {
@@ -59,7 +77,7 @@ class SearchJob extends Component {
 
                 </div>
                 {console.log("is clicked " + this.state.searchClicked)}
-                {searchClicked && <JobCard resetSearchClicked={this.resetSearchClicked} key={key} />} {/* Render the other component conditionally */}
+                {searchClicked && <Jobs resetSearchClicked={this.resetSearchClicked} key={key} />} {/* Render the other component conditionally */}
             </div>
         )
     }
