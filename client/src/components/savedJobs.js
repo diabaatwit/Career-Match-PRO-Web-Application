@@ -48,17 +48,7 @@ class SavedJobs extends Component {
         }));
     };
 
-    /*jobCard = () => {
-        return this.state.results.map(job => {
-            return (
-                <JobCard
-                    job={job}
-                    isSelected={index === selectedJobIndex}
-                    toggleJobInfo={() => this.toggleJobInfo(index)}
-                />
-            )
-        })
-    }*/
+
 
     render() {
         const { results, selectedJobIndex } = this.state
