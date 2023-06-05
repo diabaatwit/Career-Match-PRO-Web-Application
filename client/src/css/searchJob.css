@@ -6,31 +6,6 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-/*Navi area*/
-.nav-area{
-  float: right;
-  list-style: none;
-  margin-top: 0%;
-  margin-right: 0%;
-}
-
-.nav-area li{
-  display: inline-block;
-}
-
-.nav-area li a{
-  color:#fff;
-  text-decoration: none;
-  padding: 5px 10px;
-  font-family: poppins;
-  font-size: 22px;
-  transition: 0.4s ease-in-out;
-}
-
-.nav-area li a:hover{
-  background: rgb(255, 255, 255);
-  color: #333;
-}
 
 .searchForm {
   padding: 1.5%;
@@ -116,7 +91,7 @@
 }
 /* Search area */
 
-/*This is for horizonal display box ( card, and job info)*/
+/*This is for horizonal display box for seaching job( card, and job info)*/
 .big_container {
   display: flex;
   height: 100vh;
@@ -141,6 +116,43 @@
   scrollbar-width: thin;
   scrollbar-color: #888 transparent;
 }
+
+/* This is for the save Jobs page contianer*/
+.saveBig_Container {
+  display: flex;
+  height: 100vh;
+  width: 86%; 
+  flex-direction: row;
+  overflow: hidden;
+  will-change: auto;
+  margin-top: 2%;
+  margin-left: 7%;
+}
+
+.saveCards_Container {
+  flex: 30%; /* Set the flex value to 30% */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.saveInfo_Container {
+  flex: 70%; /* Set the flex value to 70% */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.saveCards_Container::-webkit-scrollbar,
+.saveInfo_Container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.saveCards_Container::-webkit-scrollbar-thumb,
+.saveInfo_Container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
 
 /* for view of the scrollbars*/
 .Cards_Container::-webkit-scrollbar,

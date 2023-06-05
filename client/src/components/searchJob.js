@@ -75,12 +75,6 @@ class SearchJob extends Component {
                         <input id="searchBtn" value="Search" onClick={this.handleOnSubmit} />
                     </form> */}
 
-                        <ul class="nav-area">
-                            <li><a href="/">HOME</a></li>
-                            <li><a href="/about">ABOUT</a></li>
-                            <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
-                        </ul>
-
                     <div class="search_header">
                         <form class="form-box">
                             <h1><strong>Search  Jobs  From  Here !</strong></h1>
