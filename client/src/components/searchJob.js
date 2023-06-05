@@ -75,10 +75,16 @@ class SearchJob extends Component {
                         <input id="searchBtn" value="Search" onClick={this.handleOnSubmit} />
                     </form> */}
 
+                        <ul class="nav-area">
+                            <li><a href="/">HOME</a></li>
+                            <li><a href="/about">ABOUT</a></li>
+                            <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
+                        </ul>
 
                     <div class="search_header">
                         <form class="form-box">
-                            <h1>Search From Here ! </h1>
+                            <h1><strong>Search  Jobs  From  Here !</strong></h1>
+                            <div class="search_field"></div>
                             <div>
                                 <input type="text" class="search-field type"
                                     placeholder= "What are you looking for?"
@@ -90,7 +96,6 @@ class SearchJob extends Component {
                             </div>
                         </form>
                     </div>
-
 
                 </div>
                 {console.log("is clicked " + this.state.searchClicked)}

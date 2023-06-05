@@ -60,8 +60,8 @@ class Jobs extends Component {
     const selectedJob = results[selectedJobIndex];
 
     return (
-      <div className="container">
-        <div className="jobCardsContainer">
+      <div className="big_container">
+        <div className="Cards_Container">
           {isLoading ? (
             <div className="loader">
               <ThreeDots type="ThreeDots" color="#BADA55" height={100} width={100} />
@@ -76,7 +76,7 @@ class Jobs extends Component {
             ))
           )}
         </div>
-        <div className="jobInfoContainer">
+        <div className="Info_Container">
           {selectedJob && <JobInfo job={selectedJob} currentPage="/home"/>}
         </div>
       </div>

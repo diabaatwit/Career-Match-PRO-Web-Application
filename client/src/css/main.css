@@ -20,17 +20,17 @@ section{
     position: relative;
 }
 
-.nav-area{
+.main_nav-area{
     float: right;
     list-style: none;
     margin-top: 40px;
 }
 
-.nav-area li{
+.main_nav-area li{
     display: inline-block;
 }
 
-.nav-area li a{
+.main_nav-area li a{
     color:#fff;
     text-decoration: none;
     padding: 5px 20px;
@@ -39,7 +39,7 @@ section{
     transition: 0.4s ease-in-out;
 }
 
-.nav-area li a:hover{
+.main_nav-area li a:hover{
     background: rgb(255, 255, 255);
     color: #333;
 }
