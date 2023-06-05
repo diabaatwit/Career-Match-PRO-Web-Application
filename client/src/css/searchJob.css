@@ -1,10 +1,28 @@
-.all {
+.home-all {
+  max-height: 120vh;
+}
+
+.savedJobs-all {
+  max-height: 110vh;
+}
+
+.home-all,
+.savedJobs-all {
   background: linear-gradient(120deg, #2980b9, #8e44ad);
   width: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {  
+  display: none;
 }
 
 .searchForm {
@@ -92,55 +110,48 @@
 /* Search area */
 
 /*This is for horizonal display box for seaching job( card, and job info)*/
-.big_container {
+.big-container,
+.savedJobsBigContainer {
   display: flex;
-  height: 100vh;
+
   width: 86%; 
+  max-height: 75vh;
   flex-direction: row;
   overflow: hidden;
-  will-change: auto;
+  
+}
+
+.big-container {
   margin-top: -12%;
+  margin-left: 7%;
+}
+
+.savedJobsBigContainer {
+  margin-top: 2%;
   margin-left: 7%;
 }
 
 .Cards_Container {
   flex: 30%; /* Set the flex value to 30% */
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
 }
 
 .Info_Container {
   flex: 70%; /* Set the flex value to 70% */
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
 }
 
 /* This is for the save Jobs page contianer*/
-.saveBig_Container {
-  display: flex;
-  height: 100vh;
-  width: 86%; 
-  flex-direction: row;
-  overflow: hidden;
-  will-change: auto;
-  margin-top: 2%;
-  margin-left: 7%;
-}
+
 
 .saveCards_Container {
   flex: 30%; /* Set the flex value to 30% */
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
 }
 
 .saveInfo_Container {
   flex: 70%; /* Set the flex value to 70% */
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
 }
 
 .saveCards_Container::-webkit-scrollbar,

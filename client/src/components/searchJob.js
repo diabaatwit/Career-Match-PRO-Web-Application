@@ -55,7 +55,7 @@ class SearchJob extends Component {
     render() {
         const { searchClicked, key } = this.state
         return (
-            <div class='all'>
+            <div class='home-all'>
                 <div class="searchForm">
                     {/* <h1>Search for Jobs!</h1> */}
                     {/* <form>

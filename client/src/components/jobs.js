@@ -60,7 +60,7 @@ class Jobs extends Component {
     const selectedJob = results[selectedJobIndex];
 
     return (
-      <div className="big_container">
+      <div className="big-container">
         <div className="Cards_Container">
           {isLoading ? (
             <div className="loader">
