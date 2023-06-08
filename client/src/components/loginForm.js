@@ -28,10 +28,35 @@ class LoginForm extends Component {
 
     // authorize user's input
     async authorization() {
+        const invalidMSG = document.getElementById("invalidMsg");
+        const input = JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+        })
+
+        console.log(input)
+
+        const options = {
+
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: input
+
+        }
         // fetch accounts
-        const response = await fetch('http://localhost:3001/accounts'); //path
+        const response = await fetch('http://localhost:3001/accounts/login-user', options); //path
         if (response.ok) {
-            const accounts = await response.json()
+            const responseData = await response.json();
+            console.log(responseData);
+            const firstName = responseData.firstName
+            const lastName = responseData.lastName
+            this.setState({ firstName, lastName })
+            localStorage.setItem('email', this.state.email)
+            localStorage.setItem('firstName', this.state.firstName)
+            localStorage.setItem('lastName', this.state.lastName)
+            window.location.assign("/home")
+            /*const accounts = await response.json()
 
             // compare user input with accounts' emails and passwords, if ok, then open home page otherwise display invalid message
             for (let i = 0; i < accounts.length; i++) {
@@ -55,11 +80,16 @@ class LoginForm extends Component {
             if (this.state.isValid == false){
                 const invalidMSG = document.getElementById("invalidMsg");
                 invalidMSG.innerHTML = "Invalid email or password. Please try again."
-            }
+            }*/
 
 
+        } else if (response.status === 404) {
+            invalidMSG.innerHTML = "User not found!"
+        } else if (response.status === 401) {
+            invalidMSG.innerHTML = "Invalid Password!"
+        } else {
+            invalidMSG.innerHTML = "Error Login!"
         }
-        console.log(this.state.isValid)
     }
 
     render() {

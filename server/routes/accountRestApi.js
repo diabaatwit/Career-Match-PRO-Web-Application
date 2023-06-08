@@ -2,6 +2,11 @@ const express = require('express')
 const router = express.Router()
 const cors = require('cors')
 const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET =
+  "dsalkjbskdabfkdsafhsafisaoifdbsaoifda]s[][adfskfdlso29698hi3jdbkFIU;OBFIABDIFEILKSANBA";
+
 
 //Give write access to server
 const whitelist = ["http://localhost:3000", "https://whimsical-begonia-2907aa.netlify.app"]
@@ -70,6 +75,21 @@ router.post('/', async (req, res) => {
     // if error, display error 400
     res.status(400).json({ message: err.message })
   }
+});
+
+router.post("/login-user", async (req, res) => {
+  const { email, password } = req.body;
+
+  const account = await Account.findOne({ email });
+  if (!account) {
+    return res.status(404).json({ error: "User Not found" });
+  }
+  if (await bcrypt.compare(password, account.password)) {
+    const { firstName, lastName, email } = account; // Extract firstName, lastName, email from account object
+
+    return res.status(200).json({ firstName, lastName, email }); // Return the extracted data
+  }
+  res.status(401).json({ error: "Invalid Password" });
 });
 
 // deleting an account
