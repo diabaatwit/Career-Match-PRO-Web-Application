@@ -51,7 +51,7 @@ class SignUpForm extends Component {
 
                 }
 
-                const response = await fetch("http://localhost:3001/accounts", options)
+                const response = await fetch("http://localhost:3001/accounts/sign-up", options)
                 if (response.ok) {
                     const responseData = await response.json();
                     console.log(responseData);

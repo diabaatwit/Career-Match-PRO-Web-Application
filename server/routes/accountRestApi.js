@@ -27,28 +27,8 @@ router.use(cors(corsOptions))
 const Account = require('../models/account')
 const { default: mongoose } = require('mongoose')
 
-// Getting all accounts
-router.get('/', async (req, res) => {
-  try {
-    // get all accounts, and retrieve it in json format.
-    const accounts = await Account.find()
-    res.header("Access-Control-Allow-Origin", "*")
-    res.json(accounts)
-  }
-  catch (err) {
-    // if error, display error 500
-    res.status(500).json({ message: err.message })
-  }
-})
-
-// getting one account
-router.get('/:id', getAccount, (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.json(res.account)
-})
-
 // adding an account
-router.post('/', async (req, res) => {
+router.post('/sign-up', async (req, res) => {
   const { firstName, lastName, email, phoneNumber, password } = req.body;
   const encryptedPassword = await encryptPassword(password)
   console.log("Encrypted password is: " + encryptedPassword)
@@ -91,38 +71,6 @@ router.post("/login-user", async (req, res) => {
   }
   res.status(401).json({ error: "Invalid Password" });
 });
-
-// deleting an account
-router.delete('/:id', getAccount, async (req, res) => {
-  try {
-    // delete account with this id.
-    await res.account[0].remove()
-    res.json({ message: 'Account deleted' })
-  } catch (err) {
-    // if error, display error 500
-    res.status(500).json({ message: err.message })
-  }
-})
-
-
-// getting a specific account by id
-async function getAccount(req, res, next) {
-  let account = []
-  try {
-    // get account by id.
-    account[0] = await Account.findById(req.params.id)
-    // if there is no account with this id, display cannot find account.
-    if (account == null) {
-      return res.status(404).json({ message: 'Cannot find account' })
-    }
-  } catch (err) {
-    // if error, display error 500
-    return res.status(500).json({ message: err.message })
-  }
-
-  res.account = account
-  next()
-}
 
 const encryptPassword = async (password) => {
   try {

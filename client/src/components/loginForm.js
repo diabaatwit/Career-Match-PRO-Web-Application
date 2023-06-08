@@ -13,9 +13,6 @@ class LoginForm extends Component {
             lastName: "",
             email: "",
             password: "",
-            id: "",
-            accounts: [],
-            isValid: false
         }
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
@@ -56,32 +53,6 @@ class LoginForm extends Component {
             localStorage.setItem('firstName', this.state.firstName)
             localStorage.setItem('lastName', this.state.lastName)
             window.location.assign("/home")
-            /*const accounts = await response.json()
-
-            // compare user input with accounts' emails and passwords, if ok, then open home page otherwise display invalid message
-            for (let i = 0; i < accounts.length; i++) {
-                if (accounts[i].email == this.state.email && accounts[i].password === this.state.password) {
-                    this.state.isValid = true
-                    const id = accounts[i]._id
-                    const firstName = accounts[i].firstName
-                    const lastName = accounts[i].lastName
-                    this.setState({ id, firstName, lastName })
-                    console.log(this.state.id)
-                    localStorage.setItem('userID', this.state.id)
-                    localStorage.setItem('firstName', this.state.firstName)
-                    localStorage.setItem('lastName', this.state.lastName)
-                    console.log(localStorage.getItem('userID'))
-                    window.location.assign("/home");
-                    
-                }
-            }
-
-            // if user entered invalid email or password, display invalid email or password msg.
-            if (this.state.isValid == false){
-                const invalidMSG = document.getElementById("invalidMsg");
-                invalidMSG.innerHTML = "Invalid email or password. Please try again."
-            }*/
-
 
         } else if (response.status === 404) {
             invalidMSG.innerHTML = "User not found!"
