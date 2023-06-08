@@ -31,7 +31,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         //required: true
     },
-    accountID: {
+    userEmail: {
         type: String,
         //required: true
     },

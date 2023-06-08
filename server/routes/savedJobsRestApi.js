@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
         salary: req.body.salary,
         jobBoard: req.body.jobBoard,
         url: req.body.url,
-        accountID: req.body.accountID,
+        userEmail: req.body.userEmail,
     })
     try {
         // add the job
