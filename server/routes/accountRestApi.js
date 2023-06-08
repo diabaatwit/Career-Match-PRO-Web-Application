@@ -55,10 +55,10 @@ router.post('/', async (req, res) => {
     password: encryptedPassword
   })
   try {
-    /*const existingAccount = await Account.findOne({ email })
+    const existingAccount = await Account.findOne({ email })
     if(existingAccount) {
       return res.status(409).json({ error: "User Exists!" })
-    }*/
+    }
     // add the account
     const newAccount = await account.save()
     res.header("Access-Control-Allow-Origin", "*")
