@@ -44,14 +44,15 @@ router.get('/:id', getAccount, (req, res) => {
 
 // adding an account
 router.post('/', async (req, res) => {
-  const encryptedPassword = await encryptPassword(req.body.password)
+  const { firstName, lastName, email, phoneNumber, password } = req.body;
+  const encryptedPassword = await encryptPassword(password)
   console.log("Encrypted password is: " + encryptedPassword)
 
   const account = new Account({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phoneNumber: phoneNumber,
     password: encryptedPassword
   })
   try {
@@ -65,6 +66,7 @@ router.post('/', async (req, res) => {
     console.log(newAccount)
     res.status(201).json(newAccount)
   } catch (err) {
+    console.log(err);
     // if error, display error 400
     res.status(400).json({ message: err.message })
   }
