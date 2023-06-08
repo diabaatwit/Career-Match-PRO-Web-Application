@@ -22,41 +22,45 @@ class SignUpForm extends Component {
     }
 
     async fetching() {
+        const donotMatchMsg = document.getElementById("invalidMsg");
 
-        if (this.state.password == this.state.confirmPassword) {
-            console.log(this.state.firstName)
-            console.log(this.state.password)
-            const newAccount = {
-
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                phoneNumber: this.state.phoneNumber,
-                password: this.state.password,
-
+        if(this.state.firstName === "" || this.state.lastName === "" || this.state.email === "" || this.state.phoneNumber === "" || this.state.password === ""){
+            donotMatchMsg.innerHTML = "Please fill required fields."
+        } else {
+            if (this.state.password === this.state.confirmPassword) {
+                console.log(this.state.firstName)
+                console.log(this.state.password)
+                const newAccount = {
+    
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    phoneNumber: this.state.phoneNumber,
+                    password: this.state.password,
+    
+                }
+                const account = JSON.stringify(newAccount)
+                console.log(account)
+    
+                const options = {
+    
+                    method: "POST",
+                    mode: "cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: account
+    
+                }
+    
+                await fetch("http://localhost:3001/accounts", options)
+                    .then(response => response.text())
+                    .catch(error => console.log('error', error));
+                window.location.assign("/login");
             }
-            const account = JSON.stringify(newAccount)
-            console.log(account)
-
-            const options = {
-
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "application/json" },
-                body: account
-
+            else {
+                
+                donotMatchMsg.innerHTML = "Confirm Password and Password do not match."
             }
-
-            await fetch("http://localhost:3001/accounts", options)
-                .then(response => response.text())
-                .catch(error => console.log('error', error));
-            window.location.assign("/login");
         }
-        else {
-            const donotMatchMsg = document.getElementById("invalidMsg");
-            donotMatchMsg.innerHTML = "Confirm Password and Password do not match."
-        }
-
     }
 
     render() {
