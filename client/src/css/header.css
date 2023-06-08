@@ -112,7 +112,7 @@ header nav .savedjobs {
 
 header nav .logout:hover,
 header nav .savedjobs:hover,
-header nav .button:hover
+header nav .button:hover,
 header div .username:hover{
     filter: brightness(1.05);
     text-decoration: underline;
