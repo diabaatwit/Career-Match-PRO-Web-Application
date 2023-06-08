@@ -25,6 +25,7 @@
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.2.7",
     "react-icons": "^4.3.1",
     "react-router": "^5.2.0",

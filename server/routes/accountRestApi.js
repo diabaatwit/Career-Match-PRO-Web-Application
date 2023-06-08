@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const cors = require('cors')
 const bcrypt = require('bcryptjs')
-const jwt = require("jsonwebtoken");
+/*const jwt = require("jsonwebtoken");
 
 const JWT_SECRET =
-  "dsalkjbskdabfkdsafhsafisaoifdbsaoifda]s[][adfskfdlso29698hi3jdbkFIU;OBFIABDIFEILKSANBA";
+  "dsalkjbskdabfkdsafhsafisaoifdbsaoifda]s[][adfskfdlso29698hi3jdbkFIU;OBFIABDIFEILKSANBA";*/
 
 
 //Give write access to server
