@@ -20,6 +20,7 @@ router.use(cors(corsOptions))
 
 // get account schema from ../models/account
 const Account = require('../models/account')
+const { default: mongoose } = require('mongoose')
 
 // Getting all accounts
 router.get('/', async (req, res) => {
@@ -50,7 +51,11 @@ router.post('/', async (req, res) => {
     phoneNumber: req.body.phoneNumber,
     password: req.body.password
   }) 
-  try {   
+  try { 
+    const existingAccount = Account.findOne({ email })
+    if(existingAccount) {
+      res.send("User with this email already exists!")
+    }
     // add the account
     const newAccount = await account.save()
     res.header("Access-Control-Allow-Origin", "*")
