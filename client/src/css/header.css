@@ -1,63 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 /* Default styles for the browser */
-*{
+* {
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
 }
 
-html{
+html {
     background-color: #FEFEFF;
 }
 
-header{
+header {
     width: 100vw;
     height: 60px;
     border-bottom: solid 1px rgba(16, 16, 16, 0.1);
     background-color: #27255d;
     font-family: 'Poppins';
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
 }
 
-header .inner{
+header .inner {
     margin-left: 5%;
     margin-right: 8%;
     height: 100%;
-    
+
 }
 
-header .logo{
+header .logo {
     display: table;
     height: 100%;
     float: left;
 }
 
-header .logo div{
+header .logo div {
     height: 100%;
     display: table-cell;
     vertical-align: middle;
 }
 
-header .logo img{
+header .logo img {
     height: 50px;
-    margin-top: 0px; /* Optical alignment of the logo */
+    margin-top: 0px;
+    /* Optical alignment of the logo */
 }
 
-header nav{
+header nav {
     float: right;
     height: 100%;
 }
 
-header nav li{
+header nav li {
     display: table;
     height: 100%;
     float: left;
     margin-right: 20px;
 }
 
-header nav li:last-of-type{
+header nav li:last-of-type {
     margin-right: 0;
 }
 
@@ -67,7 +69,7 @@ header nav span {
     padding-top: 65%;
 }
 
-header div .username{
+header div .username {
     position: absolute;
     text-decoration: none;
     color: #D4D5D4;
@@ -80,20 +82,22 @@ header div .username{
 
 }
 
-header nav .logout{
+header nav .logout {
     position: absolute;
-    text-decoration: none;
-    color: #D4D5D4;
-    justify-self: left;
     top: 3%;
     right: 5%;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 1.1em;
-
+    background-color: transparent;
+    border: none;
+    color: #D4D5D4;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
 }
 
-header nav .savedjobs{
+header nav .savedjobs {
     position: absolute;
     text-decoration: none;
     color: #D4D5D4;
@@ -106,12 +110,16 @@ header nav .savedjobs{
 
 }
 
-header nav .button:hover{
+header nav .logout:hover,
+header nav .savedjobs:hover,
+header nav .button:hover
+header div .username:hover{
     filter: brightness(1.05);
+    text-decoration: underline;
 }
 
-.title{
-    color:#7ED5DE;
+.title {
+    color: #7ED5DE;
     font-family: 'Roboto', sans-serif;
     float: left;
     font-weight: 100;
@@ -120,29 +128,3 @@ header nav .button:hover{
     align-items: center;
 }
 
-#Main-Logo{
-    color: #7ED5DE;
-    font-family: 'Roboto', sans-serif
-}
-
-header .settings{
-    display: table;
-    height: 100%;
-    float: left;
-}
-
-header .settings div{
-    height: 100%;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-header .settings img{
-    height: 50px;
-    margin-top: 15px; /* Optical alignment of the logo */
-    float: right;
-}
-
-#settings-icon { 
-    color: #D4D5D4;
-}

@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import '../css/header.css'
 
 class Header extends Component {
+    handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('email');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        window.location.assign('/login');
+    }
     render() {
         let websiteTitle = 'Career Match PRO'
         let location = window.location.pathname.split('/')
@@ -47,7 +54,7 @@ class Header extends Component {
                     <a class="username" href="/home">{localStorage.getItem('firstName')} <span>{localStorage.getItem('lastName')}</span></a>
                     <nav>
                         <li><span><a href="/savedJobs" class="savedjobs">Saved Jobs</a></span></li>
-                        <li><span><a href="/login" class="logout">Log Out</a></span></li>
+                        <li><span><button class="logout" onClick={this.handleLogout}>Log Out</button></span></li>
                     </nav>
                 </div>
             </header>
