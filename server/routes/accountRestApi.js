@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
-
+const bcrypt = require('bcryptjs')
 
 //Give write access to server
 const whitelist = ["http://localhost:3000", "https://whimsical-begonia-2907aa.netlify.app"]
@@ -44,18 +44,21 @@ router.get('/:id', getAccount, (req, res) => {
 
 // adding an account
 router.post('/', async (req, res) => {
+  const encryptedPassword = await encryptPassword(req.body.password)
+  console.log("Encrypted password is: " + encryptedPassword)
+
   const account = new Account({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
-    password: req.body.password
-  }) 
-  try { 
-    const existingAccount = Account.findOne({ email })
+    password: encryptedPassword
+  })
+  try {
+    /*const existingAccount = await Account.findOne({ email })
     if(existingAccount) {
-      res.send("User with this email already exists!")
-    }
+      return res.status(409).json({ error: "User Exists!" })
+    }*/
     // add the account
     const newAccount = await account.save()
     res.header("Access-Control-Allow-Origin", "*")
@@ -98,6 +101,15 @@ async function getAccount(req, res, next) {
   res.account = account
   next()
 }
+
+const encryptPassword = async (password) => {
+  try {
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    return encryptedPassword;
+  } catch (error) {
+    throw new Error("Encryption failed: " + error);
+  }
+};
 
 
 module.exports = router
