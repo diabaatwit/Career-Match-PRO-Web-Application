@@ -12,13 +12,11 @@ class Main extends Component {
                 <section>
                     <div class="Wrapper">
 
-                        <ul class="nav-area">
+                        <ul class="main_nav-area">
                             <li><a href="/">HOME</a></li>
                             <li><a href="/about">ABOUT</a></li>
                             <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
                         </ul>
-
-
 
                     </div>
 

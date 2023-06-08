@@ -54,10 +54,10 @@ class SavedJobs extends Component {
         const { results, selectedJobIndex } = this.state
         const selectedJob = results[selectedJobIndex];
         return results.length > 0 ? (
-            <div class='all'>
-                <h2 className='savedJobsTitle'>Saved Jobs</h2>
-                <div className="container">
-                    <div className="jobCardsContainer">
+            <div class='savedJobs-all'>
+                {/* <h2 className='savedJobsTitle'>Saved Jobs</h2> */}
+                <div className="savedJobsBigContainer">
+                    <div className="saveCards_Container">
                         {(
                             results.map((job, index) => (
                                 <JobCard
@@ -68,7 +68,7 @@ class SavedJobs extends Component {
                             ))
                         )}
                     </div>
-                    <div className="jobInfoContainer">
+                    <div className="saveInfo_Container">
                         {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" />}
                     </div>
                 </div>

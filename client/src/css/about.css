@@ -1,83 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Allura|Josefin+Sans');
-*{
+
+* {
     margin: 0;
     padding: 0;
     outline: none;
     box-sizing: border-box;
 }
 
-body{
-  overflow-y: scroll;
-  background: linear-gradient(120deg,#2980b9, #8e44ad);
-
+body {
+    overflow-y: scroll;
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
 }
 
-.all{
-  height: 120vh;
+.all {
+    height: 200vh;
 }
-.bkg{   
 
+.bkg {
     width: 100%;
     background-size: cover;
     background-position: center center;
-
     font-family: 'Josefin Sans', sans-serif;
-  }
+    padding: 20px;
+}
 
-  .about-title{
-    margin-bottom: 10px;
-    position: absolute;
-    top: 20%;
-    left: 15%;
-  }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-  .about-body{
-    margin-bottom: 10px;
-    position: absolute;
-    top: 29%;
-    left: 15%;
-    width: 65%;
-  }
-
-  .mission-title{
-    margin-bottom: 10px;
-    position: absolute;
-    top: 45%;
-    left: 15%;
-  }
-
-  .mission-body{
-    margin-bottom: 10px;
-    position: absolute;
-    top: 54%;
-    left: 15%;
-    width: 65%;
-  }
-
-  .team{
-    
-    position: absolute;
-    top: 52%;
-    left: 15%;
-    right: 15%;
-    
-    margin: 10% 0%;
-  }
-
-  
-
-  .nav-ele{
+.nav-ele {
     float: right;
     list-style: none;
     margin-top: -6px;
+    margin-right: 80px;
 }
 
-.nav-ele li{
+.nav-ele li {
     display: inline-block;
 }
 
-.nav-ele li a{
-    color:#fff;
+.nav-ele li a {
+    color: #fff;
     text-decoration: none;
     padding: 5px 20px;
     font-family: poppins;
@@ -85,7 +49,72 @@ body{
     transition: 0.4s ease-in-out;
 }
 
-.nav-ele li a:hover{
+.nav-ele li a:hover {
     background: rgb(255, 255, 255);
     color: #333;
+}
+
+.section {
+    margin-bottom: 40px;
+    margin-top: 100px;
+    margin-left: 80px; /* Added margin-left */
+}
+
+.section h2 {
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.section p {
+    color: #fff;
+    font-size: 16px;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.team-member img {
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.team-member h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.team-member p {
+    color: #fff;
+    font-size: 16px;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section ul li {
+    margin-bottom: 10px;
+}
+
+.section ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.section ul li a:hover {
+    text-decoration: underline;
+}
+
+.contact-section p {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 10px;
 }
