@@ -12,13 +12,11 @@ class SignUpForm extends Component {
             password: "",
             confirmPassword: "",
         }
-        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
-    handleOnSubmit = (e) => {
-        console.log('submitted')
+    handleSignUp = (e) => {
         this.fetching()
-
     }
 
     async fetching() {
@@ -28,8 +26,6 @@ class SignUpForm extends Component {
             donotMatchMsg.innerHTML = "Please fill required fields."
         } else {
             if (this.state.password === this.state.confirmPassword) {
-                console.log(this.state.firstName)
-                console.log(this.state.password)
                 const newAccount = {
 
                     firstName: this.state.firstName,
@@ -40,7 +36,6 @@ class SignUpForm extends Component {
 
                 }
                 const account = JSON.stringify(newAccount)
-                console.log(account)
 
                 const options = {
 
@@ -53,8 +48,8 @@ class SignUpForm extends Component {
 
                 const response = await fetch("http://localhost:3001/accounts/sign-up", options)
                 if (response.ok) {
-                    const responseData = await response.json();
-                    console.log(responseData);
+                    /*const responseData = await response.json();
+                    console.log(responseData);*/
                     window.location.assign("/login");
                 } else if (response.status === 409) {
                     donotMatchMsg.innerHTML = "User with this email already exists"
@@ -111,7 +106,7 @@ class SignUpForm extends Component {
                         <label>Confirm Password</label>
                     </div>
                     <div id="invalidMsg"></div>
-                    <input id="actionBtn" value="Sign Up" onClick={this.handleOnSubmit} />
+                    <input id="actionBtn" value="Sign Up" onClick={this.handleSignUp} />
                 </form>
             </div>
         )

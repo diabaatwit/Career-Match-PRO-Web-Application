@@ -2,16 +2,65 @@ import React, { Component } from 'react'
 import '../css/header.css'
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+        };
+        this.getUserData = this.getUserData.bind(this);
+    }
+
+    async componentDidMount() {
+        const location = window.location.pathname.split('/');
+        if (location[1] === 'home' || location[1] === 'savedJobs') {
+            await this.getUserData();
+        }
+    }
+
+    getUserData = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/accounts/user-data', {
+                method: 'POST',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    token: localStorage.getItem('userToken'),
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.data === 'token expired') {
+                alert('Token expired. Please log in again.');
+                localStorage.clear();
+                window.location.href = '/login';
+            } else {
+                localStorage.setItem('firstName', data.data.firstName);
+                localStorage.setItem('lastName', data.data.lastName);
+
+                this.setState({
+                    isLoading: false,
+                });
+            }
+        } catch (error) {
+            console.log('Error occurred while fetching user data:', error);
+        }
+    };
+
     handleLogout = (e) => {
         e.preventDefault();
-        localStorage.removeItem('email');
-        localStorage.removeItem('firstName');
-        localStorage.removeItem('lastName');
+        window.localStorage.clear();
         window.location.assign('/login');
     }
     render() {
         let websiteTitle = 'Career Match PRO'
         let location = window.location.pathname.split('/')
+        const { isLoading } = this.state;
         return location[1] == 'signup' || location[1] == 'login' ? (
             <header>
                 <div class="inner">
@@ -48,6 +97,8 @@ class Header extends Component {
                     </nav>
                 </div>
             </header>
+        ) : isLoading? (
+            <div>Loading...</div>
         ) : (
             <header>
                 <div class="inner">

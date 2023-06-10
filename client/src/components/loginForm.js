@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
 import '../css/LoginAndSignUpForm.css'
 
 
@@ -13,11 +11,12 @@ class LoginForm extends Component {
             lastName: "",
             email: "",
             password: "",
+            userToken: ""
         }
-        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
-    handleOnSubmit = (e) => {
+    handleLogin = (e) => {
 
         this.authorization()
 
@@ -31,8 +30,6 @@ class LoginForm extends Component {
             password: this.state.password,
         })
 
-        console.log(input)
-
         const options = {
 
             method: "POST",
@@ -45,13 +42,9 @@ class LoginForm extends Component {
         const response = await fetch('http://localhost:3001/accounts/login-user', options); //path
         if (response.ok) {
             const responseData = await response.json();
-            console.log(responseData);
-            const firstName = responseData.firstName
-            const lastName = responseData.lastName
-            this.setState({ firstName, lastName })
-            localStorage.setItem('email', this.state.email)
-            localStorage.setItem('firstName', this.state.firstName)
-            localStorage.setItem('lastName', this.state.lastName)
+            const userToken = responseData.userToken
+            this.setState({ userToken })
+            localStorage.setItem('userToken', this.state.userToken)
             window.location.assign("/home")
 
         } else if (response.status === 404) {
@@ -82,7 +75,7 @@ class LoginForm extends Component {
                         <label>Password</label>
                     </div>
                     <div class="pass">Forgot Password?</div>
-                    <input id="actionBtn" value="Login" onClick={this.handleOnSubmit} />
+                    <input id="actionBtn" value="Login" onClick={this.handleLogin} />
                     <div class="signup_link">
                         Not a member? <a href="/signup">Signup</a>
                     </div>
