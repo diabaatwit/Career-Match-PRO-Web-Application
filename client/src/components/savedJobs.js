@@ -23,7 +23,7 @@ class SavedJobs extends Component {
         if (response.ok) {
             const allResults = await response.json()
             console.log(allResults)
-            results = allResults.filter(job => job.accountID == localStorage.getItem('userID'));
+            results = allResults.filter(job => job.userEmail == localStorage.getItem('email'));
 
             console.log(results)
 

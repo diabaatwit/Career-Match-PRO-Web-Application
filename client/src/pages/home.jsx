@@ -1,14 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import SearchJob from "../components/searchJob";
 
 
 function Home() {
   return (
-    <div>
-
-      <SearchJob />
-
-    </div>
+    !!localStorage.getItem('userToken') ?
+      <div>
+        <SearchJob />
+      </div> :
+      <div>
+        
+      </div>
   );
 }
 

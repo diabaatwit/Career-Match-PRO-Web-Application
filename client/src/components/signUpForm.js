@@ -12,51 +12,56 @@ class SignUpForm extends Component {
             password: "",
             confirmPassword: "",
         }
-        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
-    handleOnSubmit = (e) => {
-        console.log('submitted')
+    handleSignUp = (e) => {
         this.fetching()
-
     }
 
     async fetching() {
+        const donotMatchMsg = document.getElementById("invalidMsg");
 
-        if (this.state.password == this.state.confirmPassword) {
-            console.log(this.state.firstName)
-            console.log(this.state.password)
-            const newAccount = {
+        if (this.state.firstName === "" || this.state.lastName === "" || this.state.email === "" || this.state.phoneNumber === "" || this.state.password === "") {
+            donotMatchMsg.innerHTML = "Please fill required fields."
+        } else {
+            if (this.state.password === this.state.confirmPassword) {
+                const newAccount = {
 
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                phoneNumber: this.state.phoneNumber,
-                password: this.state.password,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    phoneNumber: this.state.phoneNumber,
+                    password: this.state.password,
 
+                }
+                const account = JSON.stringify(newAccount)
+
+                const options = {
+
+                    method: "POST",
+                    mode: "cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: account
+
+                }
+
+                const response = await fetch("http://localhost:3001/accounts/sign-up", options)
+                if (response.ok) {
+                    /*const responseData = await response.json();
+                    console.log(responseData);*/
+                    window.location.assign("/login");
+                } else if (response.status === 409) {
+                    donotMatchMsg.innerHTML = "User with this email already exists"
+                } else {
+                    console.log("Error creating an account")
+                }
             }
-            const account = JSON.stringify(newAccount)
-            console.log(account)
+            else {
 
-            const options = {
-
-                method: "POST",
-                mode: "cors",
-                headers: { "Content-Type": "application/json" },
-                body: account
-
+                donotMatchMsg.innerHTML = "Confirm Password and Password do not match."
             }
-
-            await fetch("http://localhost:3001/accounts", options)
-                .then(response => response.text())
-                .catch(error => console.log('error', error));
-            window.location.assign("/login");
         }
-        else {
-            const donotMatchMsg = document.getElementById("invalidMsg");
-            donotMatchMsg.innerHTML = "Confirm Password and Password do not match."
-        }
-
     }
 
     render() {
@@ -101,7 +106,7 @@ class SignUpForm extends Component {
                         <label>Confirm Password</label>
                     </div>
                     <div id="invalidMsg"></div>
-                    <input id="actionBtn" value="Sign Up" onClick={this.handleOnSubmit} />
+                    <input id="actionBtn" value="Sign Up" onClick={this.handleSignUp} />
                 </form>
             </div>
         )

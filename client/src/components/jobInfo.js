@@ -35,7 +35,7 @@ class JobInfo extends Component {
       salary: job.salary,
       jobBoard: job.jobBoard,
       url: job.url,
-      accountID: localStorage.getItem('userID'),
+      userEmail: localStorage.getItem('email'),
     }
 
     const newSavedJobOptions = {

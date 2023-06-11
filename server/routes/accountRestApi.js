@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
+const bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET =
+  "1234567890-=!@#$%^^&*()_+qwertyuuiopl;'kjhgfdsazxcvbnm,./<>?~{}QWERTYUIOPASDFGHJKLMNBVCXZ";
 
 
 //Give write access to server
@@ -20,41 +25,28 @@ router.use(cors(corsOptions))
 
 // get account schema from ../models/account
 const Account = require('../models/account')
-
-// Getting all accounts
-router.get('/', async (req, res) => {
-  try {
-    // get all accounts, and retrieve it in json format.
-    const accounts = await Account.find()
-    res.header("Access-Control-Allow-Origin", "*")
-    res.json(accounts)
-  }
-  catch (err) {
-    // if error, display error 500
-    res.status(500).json({ message: err.message })
-  }
-})
-
-// getting one account
-router.get('/:id', getAccount, (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.json(res.account)
-})
+const { default: mongoose } = require('mongoose')
 
 // adding an account
-router.post('/', async (req, res) => {
+router.post('/sign-up', async (req, res) => {
+  const { firstName, lastName, email, phoneNumber, password } = req.body;
+  const encryptedPassword = await encryptPassword(password)
+
   const account = new Account({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    password: req.body.password
-  }) 
-  try {   
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phoneNumber: phoneNumber,
+    password: encryptedPassword
+  })
+  try {
+    const existingAccount = await Account.findOne({ email })
+    if (existingAccount) {
+      return res.status(409).json({ error: "User Exists!" })
+    }
     // add the account
     const newAccount = await account.save()
     res.header("Access-Control-Allow-Origin", "*")
-    console.log(newAccount)
     res.status(201).json(newAccount)
   } catch (err) {
     // if error, display error 400
@@ -62,37 +54,62 @@ router.post('/', async (req, res) => {
   }
 });
 
-// deleting an account
-router.delete('/:id', getAccount, async (req, res) => {
-  try {
-    // delete account with this id.
-    await res.account[0].remove()
-    res.json({ message: 'Account deleted' })
-  } catch (err) {
-    // if error, display error 500
-    res.status(500).json({ message: err.message })
+router.post("/login-user", async (req, res) => {
+  const { email, password } = req.body;
+
+  const account = await Account.findOne({ email });
+  if (!account) {
+    return res.status(404).json({ error: "User Not found" });
   }
-})
+  if (await bcrypt.compare(password, account.password)) {
+    /*const { firstName, lastName, email } = account; // Extract firstName, lastName, email from account object
 
+    return res.status(200).json({ firstName, lastName, email }); // Return the extracted data*/
+    const token = jwt.sign({ email: account.email }, JWT_SECRET, {
+      expiresIn: "15m",
+    });
 
-// getting a specific account by id
-async function getAccount(req, res, next) {
-  let account = []
-  try {
-    // get account by id.
-    account[0] = await Account.findById(req.params.id)
-    // if there is no account with this id, display cannot find account.
-    if (account == null) {
-      return res.status(404).json({ message: 'Cannot find account' })
+    if (res.status(201)) {
+      return res.status(201).json({ userToken: token });
+    } else {
+      return res.json({ error: "error" });
     }
-  } catch (err) {
-    // if error, display error 500
-    return res.status(500).json({ message: err.message })
   }
+  res.status(401).json({ error: "Invalid Password" });
+});
 
-  res.account = account
-  next()
-}
+const encryptPassword = async (password) => {
+  try {
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    return encryptedPassword;
+  } catch (error) {
+    throw new Error("Encryption failed: " + error);
+  }
+};
+
+router.post("/user-data", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+
+    const useremail = user.email;
+    Account.findOne({ email: useremail })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) { }
+});
 
 
 module.exports = router
