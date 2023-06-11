@@ -55,7 +55,7 @@ class SavedJobs extends Component {
         const selectedJob = results[selectedJobIndex];
         return results.length > 0 ? (
             <div class='savedJobs-all'>
-                {/* <h2 className='savedJobsTitle'>Saved Jobs</h2> */}
+                <h2 className='savedJobsTitle'>There are the Jobs you have saved !</h2>
                 <div className="savedJobsBigContainer">
                     <div className="saveCards_Container">
                         {(
@@ -74,7 +74,7 @@ class SavedJobs extends Component {
                 </div>
             </div>
         ) : (
-            <h1 class='noSavedJobs'>You don't have any saved jobs yet</h1>
+            <h1 class='noSavedJobs'>You don't have any saved jobs yet !</h1>
         )
     }
 }
