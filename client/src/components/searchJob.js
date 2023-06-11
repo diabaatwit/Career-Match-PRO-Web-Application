@@ -81,7 +81,7 @@ class SearchJob extends Component {
                             <div class="search_field"></div>
                             <div>
                                 <input type="text" class="search-field type"
-                                    placeholder= "What are you looking for?"
+                                    placeholder= "Job Title"
                                     onChange={(e) => this.setState({ jobTitleInput: e.target.value })}/>
                                 <input type="text" class="search-field location"
                                     placeholder="Location"
