@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken");
 
 const JWT_SECRET =
-  "dsalkjbskdabfkdsafhsafisaoifdbsaoifda]s[][adfskfdlso29698hi3jdbkFIU;OBFIABDIFEILKSANBA";
+  "1234567890-=!@#$%^^&*()_+qwertyuuiopl;'kjhgfdsazxcvbnm,./<>?~{}QWERTYUIOPASDFGHJKLMNBVCXZ";
 
 
 //Give write access to server
