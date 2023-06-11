@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
+  padding-top: 0%;
 }
 
 body {
@@ -113,7 +114,6 @@ body::-webkit-scrollbar {
 .big-container,
 .savedJobsBigContainer {
   display: flex;
-
   width: 86%; 
   max-height: 75vh;
   flex-direction: row;
@@ -127,8 +127,8 @@ body::-webkit-scrollbar {
 }
 
 .savedJobsBigContainer {
-  margin-top: 2%;
-  margin-left: 7%;
+  margin-top: 1%;
+  margin-left: 6%;
 }
 
 .Cards_Container {
@@ -143,6 +143,14 @@ body::-webkit-scrollbar {
 
 /* This is for the save Jobs page contianer*/
 
+.savedJobs-all h2{
+  text-align: center;
+  color: #f1e8e8;
+  /* text-transform: uppercase; */
+  font-size: 40px;
+  margin-bottom: 1%;
+  padding-top: 3%;
+}
 
 .saveCards_Container {
   flex: 30%; /* Set the flex value to 30% */
@@ -243,8 +251,6 @@ body::-webkit-scrollbar {
   white-space: pre-wrap;
 }
 
-
-
 /* This is for save and unsave buttons*/
 .savedJobsTitle {
   padding: 50px;
@@ -256,6 +262,8 @@ body::-webkit-scrollbar {
   top: 50%;
   left: 30%;
   text-align: center;
+  color: #f1e8e8;
+  font-size: 40px;
 }
 
 .btn {
