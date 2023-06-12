@@ -72,6 +72,9 @@ class JobInfo extends Component {
       .then(() => {
         // Update the isActionOccurred state after unsave is successful
         this.setState({ isActionOccurred: true });
+        // Call the unsaveJob prop method to remove the job from the results
+        this.props.removeJob(job._id);
+        
       })
       .catch(error => console.log('error', error));
 
