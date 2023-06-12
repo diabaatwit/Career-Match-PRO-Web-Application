@@ -31,7 +31,7 @@ class SavedJobs extends Component {
         }
     }
 
-    unsaveJob = (jobID) => {
+    removeJob = (jobID) => {
         const updatedResults = this.state.results.filter(job => job._id !== jobID);
         this.setState({ results: updatedResults });
 
@@ -64,7 +64,7 @@ class SavedJobs extends Component {
                         )}
                     </div>
                     <div className="saveInfo_Container">
-                        {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" removeJob={this.unsaveJob} />}
+                        {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" removeJob={this.removeJob} />}
                     </div>
                 </div>
             </div>
