@@ -31,14 +31,9 @@ class SavedJobs extends Component {
         }
     }
 
-    async unsaveJob(jobID) {
-        const options = {
-            method: "DELETE",
-        }
-
-        await fetch(`http://localhost:3001/savedjobs/` + jobID, options)
-            .then(response => response.text())
-            .catch(error => console.log('error', error));
+    unsaveJob = (jobID) => {
+        const updatedResults = this.state.results.filter(job => job._id !== jobID);
+        this.setState({ results: updatedResults });
 
     }
 
@@ -69,7 +64,7 @@ class SavedJobs extends Component {
                         )}
                     </div>
                     <div className="saveInfo_Container">
-                        {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" />}
+                        {selectedJob && <JobInfo job={selectedJob} currentPage="/savedJobs" removeJob={this.unsaveJob} />}
                     </div>
                 </div>
             </div>
