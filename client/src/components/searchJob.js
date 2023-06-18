@@ -36,9 +36,12 @@ class SearchJob extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
 
+        const jobTitleInput = this.state.jobTitleInput.replace(/\s/g, '%20');
+        const locationInput = this.state.locationInput.replace(/\s/g, '%20');
+
         // Save jobTitleInput and locationInput values to localStorage
-        localStorage.setItem('jobTitle', this.state.jobTitleInput);
-        localStorage.setItem('location', this.state.locationInput);
+        localStorage.setItem('jobTitle', jobTitleInput);
+        localStorage.setItem('location', locationInput);
 
         this.setState((prevState) => ({
             searchClicked: true,
