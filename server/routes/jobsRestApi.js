@@ -293,10 +293,12 @@ async function fetchLinkedinApi(req, res) {
 
 async function mergeData(req, res) {
     try {
-        const adzunaData = await fetchAdzunaApi(req, res);
-        const usajobsData = await fetchUSAJobsApi(req, res);
-        //const indeedData = await fetchIndeedApi(req, res);
-        //const linkedinData = await fetchLinkedinApi(req, res);
+        const [adzunaData, usajobsData, indeedData, linkedinData] = await Promise.all([
+            fetchAdzunaApi(req, res),
+            fetchUSAJobsApi(req, res),
+           // fetchIndeedApi(req, res),
+           // fetchLinkedinApi(req, res)
+        ]);
 
         const mergedData = adzunaData.concat(usajobsData);
 
