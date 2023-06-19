@@ -220,7 +220,7 @@ async function fetchIndeedApi(req, res) {
         .then(data => {
             const extractedData = data.map(item => ({
                 jobTitle: item.job_title,
-                jobDescription: '',
+                jobDescription: item.summary,
                 jobLocation: item.location,
                 organizationName: item.company_name,
                 salary: item.salary,
