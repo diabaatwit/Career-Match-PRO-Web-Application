@@ -1,10 +1,55 @@
 import React, { Component } from 'react';
 import '../css/about.css'
 import frond_end from '../images/amanda.jpg'; // adjust the path as needed
-import back_end from '../images/ahmed.jpg'; 
+import back_end from '../images/ahmed.jpg';
+import emailjs from 'emailjs-com';
 
 
 class AboutUs extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            userEmail: "",
+            userName: "",
+            userMessage: ""
+        }
+        this.sendEmail = this.sendEmail.bind(this);
+    }
+    
+    
+    sendEmail(event) {
+        event.preventDefault();
+
+        const userName = document.getElementById('name').value;
+        const userEmail = document.getElementById('email').value;
+        const userMessage = document.getElementById('message').value;
+    
+        this.setState({ userEmail, userName, userMessage }, () => {
+            console.log("Email is: " + this.state.userEmail);
+        
+            emailjs
+              .send(
+                'service_mtxq05r',            // service id
+                'template_q6g6xmc',           // template id
+                {
+                  to_name: 'Career Match PRO Support Team',
+                  from_name: this.state.userName,
+                  from_email: this.state.userEmail,
+                  message: this.state.userMessage
+                },
+                'Te0ItpVk8xE-hQauW'           // public key
+              )
+              .then((response) => {
+                console.log('Email sent successfully!', response.text);
+              })
+              .catch((error) => {
+                console.error('Error sending email:', error);
+              });
+          });
+        }
+      
+      
     render() {
         return (
             <div className='all'>
@@ -14,7 +59,7 @@ class AboutUs extends Component {
                         <li><a href="/about">ABOUT</a></li>
                         <li><a href="mailto:zhangf2@wit.edu">CONTACT</a></li>
                     </ul>
-                    
+
                     <div className="section about-section">
                         <h2>About Us & Our Mission</h2>
                         <p>As Wentworth students majoring in Computer Science, we are driven by our passion for technology and our desire to make a positive impact on society. Our team is composed of dedicated individuals who have a deep understanding of computer science and its potential to solve complex problems. We are committed to using our skills and knowledge to create innovative solutions that can improve people's lives.</p>
@@ -42,9 +87,11 @@ class AboutUs extends Component {
                     <div className="section social-section">
                         <h2>Follow Us</h2>
                         <ul>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="https://www.facebook.com/">Facebook</a></li>
+                            <li><a href="https://twitter.com/">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+                            <li><a href="https://www.google.com/">Google</a></li>
+                            <li><a href="https://www.skype.com/">Skype</a></li>
                             {/* <a href="https://www.facebook.com/"><ion-icon class="fa fa-facebook-official"></ion-icon></a>
                             <a href="https://www.instagram.com/"><ion-icon class="fa fa-instagram"></ion-icon></a>
                             <a href="https://twitter.com/"><ion-icon class="fa fa-twitter"></ion-icon></a>
@@ -56,7 +103,7 @@ class AboutUs extends Component {
                     <div className="section contact-section">
                         <h2>Contact Us</h2>
                         <p>If you have any questions or need assistance, please feel free to contact us through the form below:</p>
-                        <form className="contact-form">
+                        <form className="contact-form" onSubmit={this.sendEmail}>
                             <div className="input-row">
                                 <div className="input-group">
                                     <label for="name">Your Name</label>
