@@ -43,7 +43,7 @@ header {
   align-items: center;
   justify-content: center;
   overflow: hidden; /* Hide any overflowing background image */
-  background-image: url('../images/job.png');
+  background-image: url('../images/jobBG.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -102,6 +102,7 @@ header {
 .resource-container {
   display: flex;
   justify-content: space-between;
+  
 }
 
 .resource-item {
@@ -109,6 +110,10 @@ header {
   padding: 20px;
   background-color: #dad6df;
   border-radius: 5px;
+}
+
+.resource-item img{
+  height: 100px;
 }
 
 .resource-item h3 {
@@ -144,3 +149,4 @@ footer {
   text-align: center;
   color: #fff;
 }
+

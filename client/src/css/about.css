@@ -178,7 +178,15 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(247, 246, 246, 0.1);
+    color: #fff;
+}
+
+.contact-section form.contact-form textarea::placeholder{
+    color: #fff;
+}
+
+.contact-section form.contact-form input::placeholder{
     color: #fff;
 }
 
