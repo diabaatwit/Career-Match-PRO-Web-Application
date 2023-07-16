@@ -62,24 +62,35 @@ class AboutUs extends Component {
 
                     <div className="section about-section">
                         <h2>About Us & Our Mission</h2>
-                        <p>As Wentworth students majoring in Computer Science, we are driven by our passion for technology and our desire to make a positive impact on society. Our team is composed of dedicated individuals who have a deep understanding of computer science and its potential to solve complex problems. We are committed to using our skills and knowledge to create innovative solutions that can improve people's lives.</p>
-                        <p>Our mission is to simplify the job search process by creating a user-friendly platform that connects job seekers with potential employers. We aim to make job hunting less stressful and more successful for everyone.</p>
+                        <p>At Career Match PRO, our mission is to empower job seekers with the tools they need to succeed in their career journeys. 
+                            We believe that finding the right job should be a seamless and enriching experience. Our platform brings together APIs from multiple job boards, 
+                            providing users with a comprehensive and diverse range of job opportunities. We strive to streamline the job search process, making it more efficient and effective. 
+                            By merging data from various sources into one unified platform, we aim to revolutionize the way people search for employment. 
+                            Our mission is to empower individuals to discover their dream careers and connect them with the right opportunities that align with their passions and skills. 
+                            With Career Match PRO, we're here to support job seekers every step of the way on their path to success.</p>
                     </div>
                     <div className="section team-section">
                         <h2>Our Team</h2>
+                        <p>Meet the dynamic duo behind Career Match PRO! Amanda Zhang and Ahmed Diab, two talented Senior CS students at WIT, 
+                            are on a mission to revolutionize job searching. As their senior project, they're creating an innovative job searching website that compiles APIs from various job boards, 
+                            seamlessly merging them into one convenient platform. With Career Match PRO, users can explore countless job opportunities, gather insights, 
+                            and streamline their job search process, all in a single, user-friendly website. Together, they're determined to make job hunting a breeze for everyone. 
+                            Get ready to take your career to new heights with Career Match PRO!</p>
+                            <br />
                         <div className="team-members">
+                            
                             <div className="team-member">
                                 <img src={frond_end} alt="Front-end Developer" />
                                 <div>
-                                    <h3>Amanda Zhang  --  Front-end Developer</h3>
-                                    <p>Our front-end developer is responsible for creating a user-friendly interface that makes job searching a breeze. They ensure our platform is visually appealing and easy to navigate.</p>
+                                    <h3>Amanda Zhang  --  Senior CS Student</h3>
+                                    <p></p>
                                 </div>
                             </div>
                             <div className="team-member">
                                 <img src={back_end} alt="back-end Developer" />
                                 <div>
-                                    <h3>Ahmed Diab  --  Back-end Developer</h3>
-                                    <p>Our back-end developer ensures that our platform runs smoothly and efficiently. They handle data management and server-side logic, making sure that user data is secure and accessible when needed.</p>
+                                    <h3>Ahmed Diab  --  Senior CS Student</h3>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -88,10 +99,9 @@ class AboutUs extends Component {
                         <h2>Follow Us</h2>
                         <ul>
                             <li><a href="https://www.facebook.com/">Facebook</a></li>
+                            <li><a href="https://www.instagram.com/">Instagram</a></li>
                             <li><a href="https://twitter.com/">Twitter</a></li>
                             <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
-                            <li><a href="https://www.google.com/">Google</a></li>
-                            <li><a href="https://www.skype.com/">Skype</a></li>
                             {/* <a href="https://www.facebook.com/"><ion-icon class="fa fa-facebook-official"></ion-icon></a>
                             <a href="https://www.instagram.com/"><ion-icon class="fa fa-instagram"></ion-icon></a>
                             <a href="https://twitter.com/"><ion-icon class="fa fa-twitter"></ion-icon></a>
