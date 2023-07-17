@@ -79,7 +79,12 @@ header div .headerTitle {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 1.5em;
+    
 
+}
+
+header div .headerTitle:hover{
+    text-decoration: underline;
 }
 
 header nav .logout {
