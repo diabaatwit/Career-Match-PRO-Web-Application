@@ -70,30 +70,35 @@ body {
     font-size: 16px;
 }
 
-/*Display team member */ 
+/*Display team member */
 .team-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
+    align-items: flex-start;
+    /* Align items to the left */
 }
 
 .team-members {
     display: flex;
     justify-content: space-between;
-    width: 90%; /* the size of each member */
+    width: 90%;
+    /* the size of each member */
 }
 
 .team-member {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    width: 50%; /* Adjust as needed */
+    width: 50%;
+    /* Adjust as needed */
 }
 
 .team-member img {
     width: 120px;
-    height: 120px; /* Adjust as needed */
-    margin-right: 25px; /* Adjust as needed */
+    height: 120px;
+    /* Adjust as needed */
+    margin-right: 25px;
+    /* Adjust as needed */
     object-fit: cover;
 }
 
@@ -112,7 +117,8 @@ body {
 .team-member p {
     color: #fff;
     font-size: 16px;
-    text-align: left; /* Align the text to the left */
+    text-align: left;
+    /* Align the text to the left */
 }
 
 
@@ -138,15 +144,17 @@ body {
 }
 
 /* Contact us section from here */
-.contact-section h2, .contact-section p {
-    text-align: left; /* Align the text to the left */
+.contact-section h2,
+.contact-section p {
+    text-align: left;
+    /* Align the text to the left */
 }
 
 .contact-section form.contact-form {
     display: flex;
     flex-direction: column;
     max-width: 500px;
-    margin: 0; 
+    margin: 0;
 }
 
 .contact-section form.contact-form .input-row {
@@ -182,24 +190,34 @@ body {
     color: #fff;
 }
 
-.contact-section form.contact-form textarea::placeholder{
+.contact-section form.contact-form textarea::placeholder {
     color: #fff;
 }
 
-.contact-section form.contact-form input::placeholder{
+.contact-section form.contact-form input::placeholder {
     color: #fff;
 }
 
 .contact-section form.contact-form textarea {
-    height: 100px; 
+    height: 100px;
 }
 
 .contact-section form.contact-form button {
-    padding: 10px 20px;
-    border-color: #fff;
-    cursor: pointer;
-    margin-top: 10px;
+    text-align: center;
+    margin: 30px 0;
     width: 100%;
-    background: #b73bff;
-    border-radius: 15px;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.contact-section form.contact-form button:hover{
+    border-color: #2691d9;
+    transition: .5s;
 }
