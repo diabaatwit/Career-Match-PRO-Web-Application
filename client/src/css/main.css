@@ -1,90 +1,155 @@
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
+body {
+  margin: 0;
+  padding: 0;
+  color: #271e1e;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-.wrapper{
-    margin-top: 10%;
-    width: 1170px;
-    margin: auto;
+header {
+  padding: 20px;
 }
 
-section{
-    background: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0.05)), url("../images/jobBG.png") no-repeat center;
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
+.main_nav-area {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin-top: 10px;
+  margin-right: 42%;
+  margin-bottom: 20px;
 }
 
-.main_nav-area{
-    float: right;
-    list-style: none;
-    margin-top: 40px;
+.main_nav-area li {
+  margin-left: 20px;
 }
 
-.main_nav-area li{
-    display: inline-block;
+.main_nav-area li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  transition: 0.4s ease-in-out;
 }
 
-.main_nav-area li a{
-    color:#fff;
-    text-decoration: none;
-    padding: 5px 20px;
-    font-family: poppins;
-    font-size: 22px;
-    transition: 0.4s ease-in-out;
+/* .main_nav-area li a:hover {
+  background-color: #fff;
+} */
+
+/* for all the sections under the Nav*/
+
+.hero {
+  position: relative; /* Make the container a positioning context for absolute positioning */
+  height: 60vh; /* Adjust the height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Hide any overflowing background image */
+  background-image: url('../images/searchBG.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-.main_nav-area li a:hover{
-    background: rgb(255, 255, 255);
-    color: #333;
+.hero-section {
+  padding: 0px 0px;
+  text-align: center;
+  background-color: #eeefe9;
 }
 
-.welcome-text{
-    position: absolute;
-    width:600px;
-    height: 300px;
-    margin: 20% 52%;
-    text-align: center;
+.hero-content {
+  max-width: 850px;
+  margin: 0 auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.05),rgb(184, 180, 180)); 
 }
 
-.welcome-text h1{
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 40px;
+.hero-content h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
-.welcome-text a{
-    border: 1px solid #fff;
-    padding: 10px 25px;
-    text-transform: uppercase;
-    font-size: 14px;
-    margin-top: 20px;
-    display: inline-block;
-    color: #fff;
+.hero-content p {
+  padding: 10px 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 40px;
 }
 
-.welcome-text a:hover{
-    background: #fff;
-    color: #333;
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0e0101;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.icons a{
-    text-decoration: none;
-    color: #fff;
+.cta-button:hover {
+  background-color: #3f2565;
 }
-.icons ion-icon{
-    color: #fff;
-    font-size: 20px;
-    padding-left: 10px;
-    padding-top: 5px;
-    transition: 0.3s ease;
+
+.featured-resources,
+.more-resources {
+  padding: 50px;
+  text-align: center;
 }
-.icons ion-icon:hover{
-    color: blueviolet;
+
+.featured-resources h2,
+.more-resources h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #f5eeee;
 }
+
+.resource-container {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.resource-item {
+  flex-basis: 30%;
+  padding: 20px;
+  background-color: #dad6df;
+  border-radius: 5px;
+}
+
+.resource-item img{
+  width: 400px;
+  height: 260px;
+}
+
+.resource-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0b0000;
+}
+
+.resource-item p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #090101;
+}
+
+.resource-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #110101;
+  color: #f8f4f4;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.resource-link:hover {
+  background-color: #3f2565;
+}
+
+footer {
+  padding: 10px;
+  background-color: #3f2565;
+  text-align: center;
+  color: #fff;
+}
+

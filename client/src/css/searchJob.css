@@ -22,7 +22,7 @@ body {
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar {  
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -58,13 +58,16 @@ body::-webkit-scrollbar {
 
 .search-field::placeholder {
   font-weight: bold;
-  font-size: 20px; /* Adjust the font size as needed */
+  font-size: 20px;
+  /* Adjust the font size as needed */
 }
 
 .search-field {
   font-weight: bold;
-  font-size: 20px; /* Adjust the font size as needed */
+  font-size: 20px;
+  /* Adjust the font size as needed */
 }
+
 /* Fix the input text for search filed*/
 /**/
 
@@ -82,17 +85,20 @@ body::-webkit-scrollbar {
 .search-btn {
   height: 50px;
   width: 150px;
-  background: #b73bff;
-  border: none;
-  color: #fff;
-  border-radius: 15px;
-  margin-right: 20px; /* Add margin between location bar and search button */
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  margin-right: 20px;
+  /* Add margin between location bar and search button */
 }
 
 .search-btn:hover {
-  background: #560372;
-  cursor: pointer;
-  border: 2px solid #c9bbbb;
+  border-color: #2691d9;
   transition: .5s;
 }
 
@@ -108,17 +114,18 @@ body::-webkit-scrollbar {
   font-size: 40px;
   margin-bottom: 1%;
 }
+
 /* Search area */
 
 /*This is for horizonal display box for seaching job( card, and job info)*/
 .big-container,
 .savedJobsBigContainer {
   display: flex;
-  width: 86%; 
+  width: 86%;
   max-height: 75vh;
   flex-direction: row;
   overflow: hidden;
-  
+
 }
 
 .big-container {
@@ -132,18 +139,20 @@ body::-webkit-scrollbar {
 }
 
 .Cards_Container {
-  flex: 30%; /* Set the flex value to 30% */
+  flex: 30%;
+  /* Set the flex value to 30% */
   overflow-y: auto;
 }
 
 .Info_Container {
-  flex: 70%; /* Set the flex value to 70% */
+  flex: 70%;
+  /* Set the flex value to 70% */
   overflow-y: auto;
 }
 
 /* This is for the save Jobs page contianer*/
 
-.savedJobs-all h2{
+.savedJobs-all h2 {
   text-align: center;
   color: #f1e8e8;
   /* text-transform: uppercase; */
@@ -153,12 +162,14 @@ body::-webkit-scrollbar {
 }
 
 .saveCards_Container {
-  flex: 30%; /* Set the flex value to 30% */
+  flex: 30%;
+  /* Set the flex value to 30% */
   overflow-y: auto;
 }
 
 .saveInfo_Container {
-  flex: 70%; /* Set the flex value to 70% */
+  flex: 70%;
+  /* Set the flex value to 70% */
   overflow-y: auto;
 }
 
@@ -194,7 +205,7 @@ body::-webkit-scrollbar {
 }
 
 .card.selected {
-  background-color: rgb(189, 117, 248); 
+  background-color: rgb(189, 117, 248);
 }
 
 .jobInfoBody {
@@ -293,4 +304,5 @@ body::-webkit-scrollbar {
   top: 50%;
   left: 50%;
 }
+
 /* save and unsave buttoms*/
