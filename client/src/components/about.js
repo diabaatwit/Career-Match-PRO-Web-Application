@@ -42,6 +42,8 @@ class AboutUs extends Component {
               )
               .then((response) => {
                 console.log('Email sent successfully!', response.text);
+                alert("Your message was sent successfully to our support team!")
+                
               })
               .catch((error) => {
                 console.error('Error sending email:', error);

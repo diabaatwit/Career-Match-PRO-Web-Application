@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import '../css/main.css'
-import linkedinImg from '../images/linkedinLogo.jpg'
+import linkedinImg from '../images/Linkedin.jpg'
+import IndeedImg from '../images/indeed.jpg'
+import UsaJobImg from "../images/usa.jpg"
+import AdzunaImg from "../images/adzuna.jpg"
+import ZipRecruiterImg from "../images/zipRecruiter.jpg"
+import GlassdoorImg from "../images/glassdoor.jpg"
 
 
 class Main extends Component {
@@ -43,16 +48,16 @@ class Main extends Component {
                                 <a href="http://linkedin.com" target="_blank" class="resource-link">Read More</a>
                             </div>
                             <div class="resource-item">
-                                <img src={linkedinImg}/>
-                                <h3>InDeed</h3>
+                                <img src={IndeedImg}/>
+                                <h3>Indeed</h3>
                                 <p>Discover millions of job opportunities, browse reviews, and easily apply with the leading job search engine.</p>
-                                <a href="#" class="resource-link">Read More</a>
+                                <a href="https://www.indeed.com/"target="_blank" class="resource-link">Read More</a>
                             </div>
                             <div class="resource-item">
-                                <img src={linkedinImg}/>
-                                <h3>USA Jobs</h3>
+                                <img src={UsaJobImg}/>
+                                <h3>USAJobs</h3>
                                 <p>Explore government employment opportunities and contribute to public service in various federal agencies across the United States.</p>
-                                <a href="#" class="resource-link">Read More</a>
+                                <a href="https://www.ssa.gov/careers/join/usajobs.html"target="_blank" class="resource-link">Read More</a>
                             </div>
                         </div>
                     </section>
@@ -61,22 +66,22 @@ class Main extends Component {
                         <h2>More Resources</h2>
                         <div class="resource-container">
                             <div class="resource-item">
-                                <img src={linkedinImg}/>
-                                <h3>Tittle</h3>
-                                <p> description</p>
-                                <a href="#" class="resource-link">Read More</a>
+                                <img src={AdzunaImg}/>
+                                <h3>Adzuna</h3>
+                                <p>A comprehensive job search engine that aggregates listings, expanding opportunities for job seekers and employers alike.</p>
+                                <a href="https://www.adzuna.com/" target="_blank"class="resource-link">Read More</a>
                             </div>
                             <div class="resource-item">
-                                <img src={linkedinImg}/>
-                                <h3>Resource 5 Title</h3>
-                                <p>Resource 5 description goes here.</p>
-                                <a href="#" class="resource-link">Read More</a>
+                                <img src={ZipRecruiterImg}/>
+                                <h3>ZipRecruiter</h3>
+                                <p>Streamlining the job search process with a user-friendly interface and effective employer-candidate connections.</p>
+                                <a href="https://www.ziprecruiter.com/" target="_blank"class="resource-link">Read More</a>
                             </div>
                             <div class="resource-item">
-                                <img src={linkedinImg}/>
-                                <h3>Resource 6 Title</h3>
-                                <p>Resource 6 description goes here.</p>
-                                <a href="#" class="resource-link">Read More</a>
+                                <img src={GlassdoorImg}/>
+                                <h3>Glassdoor</h3>
+                                <p>The go-to platform for job seekers, offering transparent company information and employee reviews.</p>
+                                <a href="https://www.glassdoor.com/" target="_blank"class="resource-link">Read More</a>
                             </div>
                         </div>
                     </section>
