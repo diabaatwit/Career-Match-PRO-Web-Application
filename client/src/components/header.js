@@ -67,7 +67,7 @@ class Header extends Component {
                     <div class="logo">
                         <div>
                             <a href="/">
-                                <h1 className='title'>
+                                <h1 className='headerTitle'>
 
                                     {websiteTitle}
                                 </h1>
@@ -102,7 +102,7 @@ class Header extends Component {
         ) : (
             <header>
                 <div class="inner">
-                    <a class="username" href="/home">{localStorage.getItem('firstName')} <span>{localStorage.getItem('lastName')}</span></a>
+                    <a class="headerTitle" href="/home">{localStorage.getItem('firstName')} <span>{localStorage.getItem('lastName')}</span></a>
                     <nav>
                         <li><span><a href="/savedJobs" class="savedjobs">Saved Jobs</a></span></li>
                         <li><span><button class="logout" onClick={this.handleLogout}>Log Out</button></span></li>
