@@ -82,7 +82,7 @@ class Header extends Component {
                     <div class="logo">
                         <div>
                             <a href="/">
-                                <h1 className='title'>
+                                <h1 className='headerTitle'>
 
                                     {websiteTitle}
                                 </h1>

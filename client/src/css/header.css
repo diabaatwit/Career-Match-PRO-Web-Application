@@ -117,14 +117,3 @@ header div .username:hover{
     filter: brightness(1.05);
     text-decoration: underline;
 }
-
-.title {
-    color: #7ED5DE;
-    font-family: 'Roboto', sans-serif;
-    float: left;
-    font-weight: 100;
-    font-size: 1.4em;
-    display: inline-flex;
-    align-items: center;
-}
-
