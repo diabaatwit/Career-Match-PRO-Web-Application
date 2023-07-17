@@ -75,6 +75,7 @@ header {
 .cta-button {
   display: inline-block;
   padding: 10px 20px;
+  margin-bottom: 25px;
   background-color: #0e0101;
   color: #fff;
   font-size: 18px;
