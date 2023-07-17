@@ -205,7 +205,7 @@ body::-webkit-scrollbar {
 }
 
 .card.selected {
-  background-color: rgb(189, 117, 248);
+  background-color: rgb(117, 170, 248);
 }
 
 .jobInfoBody {
