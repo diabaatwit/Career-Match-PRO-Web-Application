@@ -32,7 +32,7 @@ class Main extends Component {
                         <div class="hero-content">
                             <h1>Career Match PRO</h1>
                             <p>Discover our resources to enhance your career search, uncover invaluable insights, and streamline the job-seeking process. With our comprehensive collection of job APIs, you can access all the opportunities you need in one convenient location, making your job search more efficient and effective.</p>
-                            <a href="/signup" class="cta-button">Get Started</a>
+                            <a href="/login" class="cta-button">Get Started</a>
                         </div>
                         </div>
                     </section>

@@ -296,11 +296,11 @@ async function mergeData(req, res) {
         const [adzunaData, usajobsData, indeedData, linkedinData] = await Promise.all([
             fetchAdzunaApi(req, res),
             fetchUSAJobsApi(req, res),
-           // fetchIndeedApi(req, res),
-           // fetchLinkedinApi(req, res)
+            fetchIndeedApi(req, res),
+            fetchLinkedinApi(req, res)
         ]);
 
-        const mergedData = adzunaData.concat(usajobsData);
+        const mergedData = linkedinData.concat(indeedData, adzunaData, usajobsData);
 
         return mergedData;
     } catch (error) {

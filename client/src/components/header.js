@@ -75,6 +75,12 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
+                <div class="inner">
+                    <nav>
+                        <li><span><a href="/login" class="savedjobs">Login</a></span></li>
+                        <li><span><a href="/signup" class="logout">Sign Up</a></span></li>
+                    </nav>
+                </div>
             </header>
         ) : location[1] == '' || location[1] == 'about' ? (
             <header>
