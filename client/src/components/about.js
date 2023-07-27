@@ -104,13 +104,8 @@ class AboutUs extends Component {
                             <li><a href="https://www.instagram.com/">Instagram</a></li>
                             <li><a href="https://twitter.com/">Twitter</a></li>
                             <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
-                            {/* <a href="https://www.facebook.com/"><ion-icon class="fa fa-facebook-official"></ion-icon></a>
-                            <a href="https://www.instagram.com/"><ion-icon class="fa fa-instagram"></ion-icon></a>
-                            <a href="https://twitter.com/"><ion-icon class="fa fa-twitter"></ion-icon></a>
-                            <a href="https://www.google.com/"><ion-icon class="fa fa-google"></ion-icon></a>
-                            <a href="https://www.skype.com/"><ion-icon class="fa fa-skype"></ion-icon></a> */}
                         </ul>
-                        <hr /> {/* This creates a horizontal line */}
+                        <hr /> 
                     </div>
                     <div className="section contact-section">
                         <h2>Contact Us</h2>

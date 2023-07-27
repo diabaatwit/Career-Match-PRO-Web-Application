@@ -8,7 +8,7 @@ const { title } = require('process');
 
 
 //Give write access to server
-const whitelist = ["http://localhost:3000", "https://whimsical-begonia-2907aa.netlify.app"]
+const whitelist = ["http://localhost:3000"]
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || whitelist.indexOf(origin) !== -1) {
@@ -115,74 +115,12 @@ async function fetchUSAJobsApi(req, res) {
             }));
 
             return extractedData;
-            /*res.writeHead(200, headers);
-            res.end(JSON.stringify(data));*/
         })
         .catch(error => {
             console.log(error);
             return[];
         });
 }
-
-/*async function fetchIndeedApi(req, res) {
-    const decodeParams = searchParams => Array
-        .from(searchParams.keys())
-        .reduce((acc, key) => ({ ...acc, [key]: searchParams.get(key) }), {});
-
-    const requestURL = inputURL.parse(req.url);
-    const decodedParams = decodeParams(new URLSearchParams(requestURL.search));
-    const { search, location } = decodedParams;
-
-    const targetURL = `https://${config.RapidAPIHost}/jobs/search?query=${search}&location=${location}`;
-
-    console.log(`Proxy GET request to : ${targetURL}`);
-    return fetch(targetURL, {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': config.RapidAPIKey,
-            'X-RapidAPI-Host': config.RapidAPIHost
-        }
-    })
-        .then(response => response.json())
-        .then(async data => {
-            const fullJobData = [];
-            for (job of data.hits) {
-                const jobLink = job.link
-                console.log(jobLink)
-                const jobURL = `https://${config.RapidAPIHost}${jobLink}`
-                const fullJobResponse = await fetch(jobURL, {
-                    method: 'GET',
-                    headers: {
-                        'X-RapidAPI-Key': config.RAPID_API_KEY,
-                        'X-RapidAPI-Host': config.RAPID_INDEED_API_HOST,
-                    },
-                });
-                const fullJobDataResponse = await fullJobResponse.json();
-
-                const { job_title, description, indeed_final_url } = fullJobDataResponse;
-                const organizationName = fullJobDataResponse.company?.name;
-
-                const jobData = {
-                    jobTitle: job_title,
-                    jobDescription: description,
-                    organizationName: organizationName,
-                    url: indeed_final_url,
-                    jobBoard: 'indeed'
-                };
-
-                fullJobData.push(jobData);
-            }
-
-            return fullJobData;
-            //res.writeHead(200, headers);
-            //res.end(JSON.stringify(data));
-        })
-        .catch(error => {
-            console.log(error);
-            res.writeHead(500, headers);
-            res.end(JSON.stringify(response));
-        });
-}*/
 
 async function fetchIndeedApi(req, res) {
     const decodeParams = searchParams => Array
