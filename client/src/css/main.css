@@ -30,15 +30,9 @@ header {
   transition: 0.4s ease-in-out;
 }
 
-/* .main_nav-area li a:hover {
-  background-color: #fff;
-} */
-
-/* for all the sections under the Nav*/
-
 .hero {
-  position: relative; /* Make the container a positioning context for absolute positioning */
-  height: 60vh; /* Adjust the height as needed */
+  position: relative; 
+  height: 60vh; 
   display: flex;
   align-items: center;
   justify-content: center;

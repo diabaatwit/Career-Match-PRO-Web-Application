@@ -60,24 +60,6 @@ class SearchJob extends Component {
         return (
             <div class='home-all'>
                 <div class="searchForm">
-                    {/* <h1>Search for Jobs!</h1> */}
-                    {/* <form>
-                        <div id="invalidMsg"></div>
-                        <div class="search_field">
-                            <input type="text" required={true}
-                                onChange={(e) => this.setState({ jobTitleInput: e.target.value })} />
-                            <span></span>
-                            <label>Job Title</label>
-                        </div>
-                        <div class="search_field">
-                            <input type="text" required={true}
-                                onChange={(e) => this.setState({ locationInput: e.target.value })} />
-                            <span></span>
-                            <label>Location</label>
-                        </div>
-                        <input id="searchBtn" value="Search" onClick={this.handleOnSubmit} />
-                    </form> */}
-
                     <div class="search_header">
                         <form class="form-box">
                             <h1><strong>Search  Jobs  From  Here !</strong></h1>

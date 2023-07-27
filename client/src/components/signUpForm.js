@@ -48,8 +48,6 @@ class SignUpForm extends Component {
 
                 const response = await fetch("http://localhost:3001/accounts/sign-up", options)
                 if (response.ok) {
-                    /*const responseData = await response.json();
-                    console.log(responseData);*/
                     window.location.assign("/login");
                 } else if (response.status === 409) {
                     donotMatchMsg.innerHTML = "User with this email already exists"
