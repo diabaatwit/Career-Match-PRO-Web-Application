@@ -62,8 +62,6 @@ router.post("/login-user", async (req, res) => {
     return res.status(404).json({ error: "User Not found" });
   }
   if (await bcrypt.compare(password, account.password)) {
-
-    return res.status(200).json({ firstName, lastName, email }); // Return the extracted data*/
     const token = jwt.sign({ email: account.email }, JWT_SECRET, {
       expiresIn: "15m",
     });
